@@ -16,6 +16,8 @@
 
                     Welcome to timeinator {{ Auth::user()->name }}
 
+                    <a class="d-block" href="{{ route('companies.index') }}">{{ __('Companies') }}</a>
+
                     {{-- STATS GOES HERE  --}}
                 </div>
             </div>

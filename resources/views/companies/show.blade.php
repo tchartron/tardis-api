@@ -9,6 +9,7 @@
 
                 <div class="card-body">
                     {{ $company->description }}
+                    <a class="d-block" href="{{ route('companies.index') }}">{{ __('Back to companies') }}</a>
                 </div>
             </div>
         </div>
