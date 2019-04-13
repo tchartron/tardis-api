@@ -15,6 +15,8 @@
                     @endif
 
                     Welcome to timeinator {{ Auth::user()->name }}
+
+                    {{-- STATS GOES HERE  --}}
                 </div>
             </div>
         </div>
