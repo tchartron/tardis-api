@@ -17,8 +17,14 @@
                     @foreach ($companies as $company)
                         <div class="row mt-2">
                             <div class="col-md-12">
-                                <div><span class="font-weight-bold">{{ __('Company name : ') }}</span>{{ $company->name  }}</div>
-                                <div><span class="font-weight-bold">{{ __('Company Description : ') }}</span>{{ $company->description }}</div>
+                                <div>
+                                    <span class="font-weight-bold">{{ __('Company name : ') }}</span>
+                                    <a href="/companies/{{ $company->id }}">{{ $company->name  }}</a>
+                                </div>
+                                <div>
+                                    <span class="font-weight-bold">{{ __('Company Description : ') }}</span>
+                                    {{ $company->description }}
+                                </div>
                             </div>
                         </div>
                         <hr />
