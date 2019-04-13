@@ -16,6 +16,8 @@
                                 <div>
                                     <span class="font-weight-bold">{{ __('Company name : ') }}</span>
                                     <a href="/companies/{{ $company->id }}">{{ $company->name  }}</a>
+                                    <a href="{{ route('companies.edit', ['id' => $company->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}</a>
+
                                 </div>
                                 <div>
                                     <span class="font-weight-bold">{{ __('Company Description : ') }}</span>
