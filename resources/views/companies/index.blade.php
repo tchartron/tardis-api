@@ -8,6 +8,8 @@
                 <div class="card-header">Companies</div>
 
                 <div class="card-body">
+                    <a href="{{ route('companies.create') }}" class="btn btn-primary" role="button">{{ __('Create new company') }}</a>
+                    <hr />
                     @foreach ($companies as $company)
                         <div class="row mt-2">
                             <div class="col-md-12">
