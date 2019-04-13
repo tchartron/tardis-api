@@ -16,3 +16,6 @@ Route::get('/', 'FrontController@index')->name('front');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Resources
+Route::resource('companies', 'CompanyController');
