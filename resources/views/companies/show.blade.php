@@ -10,6 +10,8 @@
                 <div class="card-body">
                     {{ $company->description }}
                     <a class="d-block" href="{{ route('companies.index') }}">{{ __('Back to companies') }}</a>
+                    <a href="{{ route('companies.edit', ['id' => $company->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}</a>
+
                 </div>
             </div>
         </div>

@@ -15,14 +15,13 @@
                             <div class="col-md-12">
                                 <div>
                                     <span class="font-weight-bold">{{ __('Company name : ') }}</span>
-                                    <a href="/companies/{{ $company->id }}">{{ $company->name  }}</a>
-                                    <a href="{{ route('companies.edit', ['id' => $company->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}</a>
-
+                                    <a class="d-block" href="/companies/{{ $company->id }}">{{ $company->name  }}</a>
                                 </div>
                                 <div>
                                     <span class="font-weight-bold">{{ __('Company Description : ') }}</span>
                                     {{ $company->description }}
                                 </div>
+                                <a href="{{ route('companies.edit', ['id' => $company->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}</a>
                             </div>
                         </div>
                         <hr />
