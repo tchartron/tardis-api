@@ -29,7 +29,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" rows="3">{{ old('description') }}</textarea>
+                                <textarea id="description" name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" rows="3" required>{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('description') }}</strong>

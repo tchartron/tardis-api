@@ -59,7 +59,17 @@ class CompanyController extends Controller
         ///////////////////
         //Third approach //
         ///////////////////
-        Company::create(request(['name', 'description']));
+        // Company::create(request(['name', 'description']));
+        // return redirect('/companies');
+
+        ////////////////////
+        //With validation //
+        ////////////////////
+        $validatedRequest = request()->validate([
+            'name' => ['required', 'min:3'],
+            'description' => ['required', 'min:10']
+        ]);
+        Company::create($validatedRequest);
         return redirect('/companies');
     }
 
