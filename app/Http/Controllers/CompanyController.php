@@ -41,7 +41,7 @@ class CompanyController extends Controller
         $company->name = request('name');
         $company->description = request('description');
         $company->save();
-        return redirect('/companies')
+        return redirect('/companies');
     }
 
     /**
@@ -52,7 +52,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        return view('companies.show' compact('company'));
+        return view('companies.show', compact('company'));
     }
 
     /**
