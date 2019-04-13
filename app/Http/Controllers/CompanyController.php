@@ -36,11 +36,26 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $company = new Company();
+        ////////////////////
+        // First approach //
+        ////////////////////
+        // $company = new Company();
+        // $company->name = request('name');
+        // $company->description = request('description');
+        // $company->save();
 
-        $company->name = request('name');
-        $company->description = request('description');
-        $company->save();
+        ////////////////////
+        //Second approach //
+        ////////////////////
+        // Company::create([
+        //     'name' => request('name'),
+        //     'description' => request('description')
+        // ]);
+
+        ///////////////////
+        //Third approach //
+        ///////////////////
+        Company::create(request(['name', 'description']));
         return redirect('/companies');
     }
 
@@ -75,9 +90,13 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        $company->name = request('name');
-        $company->description = request('description');
-        $company->save();
+        ///////////////////
+        //First approach //
+        ///////////////////
+        // $company->name = request('name');
+        // $company->description = request('description');
+        // $company->save();
+        $company->update(request(['name', 'description']));
         return redirect('/companies');
     }
 
