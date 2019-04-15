@@ -49279,55 +49279,97 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 }); //Dirty stopwatch JS
+// var h1 = document.getElementsByTagName('h2')[0],
+//     start = document.getElementById('start'),
+//     stop = document.getElementById('stop'),
+//     clear = document.getElementById('clear'),
+//     seconds = 0, minutes = 0, hours = 0,
+//     t;
+// function add() {
+//     seconds++;
+//     if (seconds >= 60) {
+//         seconds = 0;
+//         minutes++;
+//         if (minutes >= 60) {
+//             minutes = 0;
+//             hours++;
+//         }
+//     }
+//     h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+//     timer();
+// }
+// function timer() {
+//     t = setTimeout(add, 1000);
+// }
+// timer();
+// /* Start button */
+// start.onclick = timer;
+// /* Stop button */
+// stop.onclick = function() {
+//     clearTimeout(t);
+// }
+// /* Clear button */
+// clear.onclick = function() {
+//     h1.textContent = "00:00:00";
+//     seconds = 0; minutes = 0; hours = 0;
+// }
 
-var h1 = document.getElementsByTagName('h2')[0],
-    start = document.getElementById('start'),
-    stop = document.getElementById('stop'),
-    clear = document.getElementById('clear'),
-    seconds = 0,
-    minutes = 0,
-    hours = 0,
-    t;
+var timerDiv = document.getElementById('timer');
+var start = document.getElementById('start');
+var pause = document.getElementById('pause');
+var stop = document.getElementById('stop');
+var interval;
+var seconds = 0;
+var minutes = 0;
+var hours = 0;
 
-function add() {
+function tickTimer() {
   seconds++;
 
-  if (seconds >= 60) {
+  if (seconds > 59) {
     seconds = 0;
     minutes++;
 
-    if (minutes >= 60) {
+    if (minutes > 59) {
       minutes = 0;
       hours++;
     }
-  }
+  } // console.log(hours + ":" + minutes + ":" + seconds);
+  // minutes = formatTime(minutes);
+  // seconds = formatTime(seconds);
 
-  h1.textContent = (hours ? hours > 9 ? hours : "0" + hours : "00") + ":" + (minutes ? minutes > 9 ? minutes : "0" + minutes : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-  timer();
+
+  timeTemplate = hours + ":" + minutes + ":" + seconds;
+  timeTemplate = (hours ? hours > 9 ? hours : "0" + hours : "00") + ":" + (minutes ? minutes > 9 ? minutes : "0" + minutes : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+  timerDiv.textContent = timeTemplate;
 }
 
-function timer() {
-  t = setTimeout(add, 1000);
+function formatTime(n) {
+  return (parseInt(n, 10) >= 10 ? '' : '0') + n;
 }
 
-timer();
-/* Start button */
+function launchTimer() {
+  interval = setInterval(tickTimer, 1000); //tick every 1 second
+}
 
-start.onclick = timer;
-/* Stop button */
+function pauseTimer() {
+  clearInterval(interval);
+} //bind events
+
+
+start.onclick = launchTimer;
+
+pause.onclick = function () {
+  pauseTimer(interval);
+};
 
 stop.onclick = function () {
-  clearTimeout(t);
-};
-/* Clear button */
-
-
-clear.onclick = function () {
-  h1.textContent = "00:00:00";
+  //This must save the time instance to DB before cleaning things
+  timerDiv.textContent = "00:00:00";
   seconds = 0;
   minutes = 0;
   hours = 0;
-};
+}; // launchTimer();
 
 /***/ }),
 
