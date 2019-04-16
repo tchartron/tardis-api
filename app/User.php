@@ -42,7 +42,7 @@ class User extends Authenticatable
         return $this->hasMany(Time::class);
     }
 
-    public function tasks()
+    public function task()
     {
         return $this->hasMany(Task::class);
     }
