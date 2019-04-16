@@ -110,7 +110,11 @@ class CompanyController extends Controller
         // $company->name = request('name');
         // $company->description = request('description');
         // $company->save();
-        $company->update(request(['name', 'description']));
+        $validatedRequest = request()->validate([
+            'name' => ['required', 'min:3'],
+            'description' => ['required', 'min:10']
+        ]);
+        $company->update($validatedRequest);
         return redirect('/companies');
     }
 
