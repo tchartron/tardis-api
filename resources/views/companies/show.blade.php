@@ -20,9 +20,12 @@
                         <button id="stop" class="btn btn-success">{{ __('Stop') }}</button>
                     </div>
                     <hr />
+                    <div class="text-center">
+                        <h5 class="card-title">{{ __('Time spent for') }} {{ $company->name }}</h5>
+                    </div>
+                    <hr />
                     <a class="btn btn-dark" href="{{ route('companies.index') }}" role="button"><-{{ __('Back to companies') }}</a>
                     <a class="btn btn-success" href="{{ route('companies.edit', ['id' => $company->id]) }}" role="button">{{ __('Edit') }} {{ $company->name }}</a>
-
                 </div>
             </div>
         </div>
