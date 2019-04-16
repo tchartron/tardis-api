@@ -14,14 +14,14 @@
                         <div class="row mt-2">
                             <div class="col-md-12">
                                 <div>
-                                    <span class="font-weight-bold">{{ __('Company name : ') }}</span>
-                                    <a class="d-block" href="/companies/{{ $company->id }}">{{ $company->name  }}</a>
+                                    <span class="font-weight-bold">{{ __('Name :') }}</span>
+                                    <a class="" href="/companies/{{ $company->id }}">{{ $company->name }}</a>
                                 </div>
                                 <div>
-                                    <span class="font-weight-bold">{{ __('Company Description : ') }}</span>
+                                    <span class="font-weight-bold">{{ __('Description : ') }}</span>
                                     {{ $company->description }}
                                 </div>
-                                <a href="{{ route('companies.edit', ['id' => $company->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}</a>
+                                <a href="{{ route('companies.edit', ['id' => $company->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}  {{ $company->name }}</a>
                             </div>
                         </div>
                         <hr />
