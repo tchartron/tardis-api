@@ -36,7 +36,8 @@ const app = new Vue({
 let timerDiv = document.getElementById('timer');
 let start = document.getElementById('start');
 let pause = document.getElementById('pause');
-let stop = document.getElementById('stop');
+let reset = document.getElementById('reset');
+// let stop = document.getElementById('stop');
 let interval;
 
 let seconds = 0;
@@ -80,7 +81,7 @@ pause.onclick = function() {
     pauseTimer(interval);
 }
 
-stop.onclick = function() { //This must save the time instance to DB before cleaning things
+reset.onclick = function() { //This must save the time instance to DB before cleaning things
     timerDiv.textContent = "00:00:00";
     seconds = 0; minutes = 0; hours = 0;
 }
