@@ -21,6 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('companies', 'CompanyController');
 
 //Don't need full resource controller for times
-Route::post('/times', 'TimeController@store');
-Route::get('/times', 'TimeController@index');
-Route::delete('/times/{time}', 'TimeController@destroy');
+Route::post('/times', 'TimeController@store')->name('times.store');
+Route::get('/times', 'TimeController@index')->name('times.index');
+Route::delete('/times/{time}', 'TimeController@destroy')->name('times.destroy');
