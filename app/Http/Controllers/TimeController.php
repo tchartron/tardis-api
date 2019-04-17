@@ -25,11 +25,22 @@ class TimeController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedRequest = request()->validate([
-            'name' => ['required', 'min:3'],
-            'description' => ['required', 'min:10']
+        // dd(request());
+        request()->validate([
+            'company_id' => ['required', 'integer'],
+            'total_time' => ['required', 'date_format:H:i:s']
         ]);
-        Time::create($validatedRequest);
+        //NOT WORKINGit says user_id does not have a default value ...
+        // Time::create([
+        //     'user_id' => \Auth::user()->id, //or auth()->user()->id
+        //     'company_id' => request('company_id'),
+        //     'total_time' => request('total_time')
+        // ]);
+        $time = new Time();
+        $time->user_id = \Auth::user()->id; //or auth()->user()->id
+        $time->company_id = request('company_id');
+        $time->total_time = request('total_time');
+        $time->save();
         return back(); // redirect to previous page
     }
 

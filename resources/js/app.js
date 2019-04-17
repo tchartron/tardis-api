@@ -37,7 +37,8 @@ let timerDiv = document.getElementById('timer');
 let start = document.getElementById('start');
 let pause = document.getElementById('pause');
 let reset = document.getElementById('reset');
-// let stop = document.getElementById('stop');
+let save = document.getElementById('save');
+let totalTimeDiv = document.getElementById('total_time');
 let interval;
 
 let seconds = 0;
@@ -79,9 +80,17 @@ start.onclick = launchTimer;
 
 pause.onclick = function() {
     pauseTimer(interval);
+    // totalTimeDiv.value = timerDiv.textContent;
 }
 
 reset.onclick = function() { //This must save the time instance to DB before cleaning things
     timerDiv.textContent = "00:00:00";
     seconds = 0; minutes = 0; hours = 0;
+    // totalTimeDiv.value = timerDiv.textContent;
+}
+
+save.onclick = function (e) {
+    totalTimeDiv.value = timerDiv.textContent;
+    e.preventDefault();
+    document.getElementById('time_spent').submit();
 }

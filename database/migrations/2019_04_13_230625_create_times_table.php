@@ -17,8 +17,7 @@ class CreateTimesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('company_id');
-            $table->time('started_at');
-            $table->time('finished_at');
+            $table->time('total_time');
             $table->timestamps();
         });
     }

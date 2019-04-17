@@ -49283,8 +49283,9 @@ var app = new Vue({
 var timerDiv = document.getElementById('timer');
 var start = document.getElementById('start');
 var pause = document.getElementById('pause');
-var reset = document.getElementById('reset'); // let stop = document.getElementById('stop');
-
+var reset = document.getElementById('reset');
+var save = document.getElementById('save');
+var totalTimeDiv = document.getElementById('total_time');
 var interval;
 var seconds = 0;
 var minutes = 0;
@@ -49327,7 +49328,7 @@ function pauseTimer() {
 start.onclick = launchTimer;
 
 pause.onclick = function () {
-  pauseTimer(interval);
+  pauseTimer(interval); // totalTimeDiv.value = timerDiv.textContent;
 };
 
 reset.onclick = function () {
@@ -49335,7 +49336,13 @@ reset.onclick = function () {
   timerDiv.textContent = "00:00:00";
   seconds = 0;
   minutes = 0;
-  hours = 0;
+  hours = 0; // totalTimeDiv.value = timerDiv.textContent;
+};
+
+save.onclick = function (e) {
+  totalTimeDiv.value = timerDiv.textContent;
+  e.preventDefault();
+  document.getElementById('time_spent').submit();
 };
 
 /***/ }),

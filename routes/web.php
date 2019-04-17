@@ -22,5 +22,6 @@ Route::resource('companies', 'CompanyController');
 
 //Don't need full resource controller for times
 Route::post('/times', 'TimeController@store')->name('times.store');
+// Route::post('/companies/{company}/times', 'TimeController@store')->name('times.store'); // Jeffrey's way of doing things watch lfs-from-scratch ep 18
 Route::get('/times', 'TimeController@index')->name('times.index');
 Route::delete('/times/{time}', 'TimeController@destroy')->name('times.destroy');
