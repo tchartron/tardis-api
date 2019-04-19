@@ -10,22 +10,22 @@
                 <div class="card-body">
                     <a href="{{ route('companies.index') }}" class="btn btn-primary" role="button">{{ __('Go to work') }}</a>
                     <hr />
-                    @foreach ($times as $time)
+                    @foreach ($timers as $timer)
                         <div class="row mt-2">
                             <div class="col-md-12">
                                 <div>
                                     <span class="font-weight-bold">{{ __('By user : ') }}</span>
-                                    {{ $time->user_id }}
+                                    {{ $timer->user_id }}
                                 </div>
                                 <div>
                                     <span class="font-weight-bold">{{ __('For company : ') }}</span>
-                                    {{ $time->company_id }}
+                                    {{ $timer->company_id }}
                                 </div>
                                 <div>
-                                    <span class="font-weight-bold">{{ __('Time value : ') }}</span>
-                                    {{ $time->total_time }}
+                                    <span class="font-weight-bold">{{ __('Timer value : ') }}</span>
+                                    {{ $timer->total_time }}
                                 </div>
-                                {{-- <a href="{{ route('companies.edit', ['id' => $time->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}  {{ $time->name }}</a> --}}
+                                {{-- <a href="{{ route('companies.edit', ['id' => $timer->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}  {{ $timer->name }}</a> --}}
                             </div>
                         </div>
                         <hr />

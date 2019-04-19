@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Time;
+use App\Timer;
 use Illuminate\Http\Request;
 
 class TimerController extends Controller

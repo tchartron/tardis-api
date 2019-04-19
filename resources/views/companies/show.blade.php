@@ -15,7 +15,7 @@
                     <div class="text-center">
                         <h5 class="card-title">{{ __('Work for') }} {{ $company->name }}</h5>
                         <div id="timer">00:00:00</div>
-                        <form id="time_spent" method="POST" action="{{ route('times.store') }}">
+                        <form id="time_spent" method="POST" action="{{ route('timers.store') }}">
                             @csrf
                             <input id="total_time" type="hidden" name="total_time" value="00:00:00" />
                             {{-- <input id="user_id" type="hidden" name="user_id" value="{{ Auth::user()->id }}" /> --}}

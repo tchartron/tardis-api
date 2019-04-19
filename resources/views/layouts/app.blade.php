@@ -56,7 +56,7 @@
                                     <a class="nav-link" href="{{ route('companies.index') }}">{{ __('Companies') }}</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('times.index') }}">{{ __('Times') }}</a>
+                                    <a class="nav-link" href="{{ route('timers.index') }}">{{ __('Times') }}</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
