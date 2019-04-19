@@ -19,8 +19,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Resources
 Route::resource('companies', 'CompanyController');
+Route::resource('tasks', 'CompanyController');
 
-//Don't need full resource controller for times
+//Don't need full resource controller for timers
 Route::post('/times', 'TimerController@store')->name('timers.store');
 // Route::post('/companies/{company}/times', 'TimerController@store')->name('timers.store'); // Jeffrey's way of doing things watch lfs-from-scratch ep 18
 Route::get('/times', 'TimerController@index')->name('timers.index');

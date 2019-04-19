@@ -56,6 +56,9 @@
                                     <a class="nav-link" href="{{ route('companies.index') }}">{{ __('Companies') }}</a>
                             </li>
                             <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('tasks.index') }}">{{ __('Tasks') }}</a>
+                            </li>
+                            <li class="nav-item">
                                     <a class="nav-link" href="{{ route('timers.index') }}">{{ __('Times') }}</a>
                             </li>
                             <li class="nav-item dropdown">
