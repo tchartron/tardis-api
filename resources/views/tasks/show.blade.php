@@ -5,27 +5,22 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Tasks</div>
+                <div class="card-header">{{ $task->title }}</div>
 
                 <div class="card-body">
-                    <a href="{{ route('tasks.create') }}" class="btn btn-primary" role="button">{{ __('Create new task') }}</a>
+                    <div class="my-2">
+                        <p class="lead">{{ $task->description }}</p>
+                        <a class="btn btn-dark" href="{{ route('tasks.index') }}" role="button"><-{{ __('Back to tasks') }}</a>
+                        <a class="btn btn-primary" href="{{ route('tasks.edit', ['id' => $task->id]) }}" role="button">{{ __('Edit') }} {{ $task->title }}</a>
+                    </div>
                     <hr />
-                    @foreach ($tasks as $task)
-                        <div class="row mt-2">
-                            <div class="col-md-12">
-                                <div>
-                                    <span class="font-weight-bold">{{ __('Name :') }}</span>
-                                    <a class="" href="/tasks/{{ $task->id }}">{{ $task->name }}</a>
-                                </div>
-                                <div>
-                                    <span class="font-weight-bold">{{ __('Description : ') }}</span>
-                                    {{ $task->description }}
-                                </div>
-                                <a href="{{ route('companies.edit', ['id' => $task->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}  {{ $task->name }}</a>
-                            </div>
+                    <div class="text-center">
+                        <h5 class="card-title">{{ __('Times spent on task') }} {{ $task->title }}</h5>
+                        <div class="card-text">
+                            {{-- List of times --}}
                         </div>
-                        <hr />
-                    @endforeach
+                    </div>
+                    <hr />
                 </div>
             </div>
         </div>

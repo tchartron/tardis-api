@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Resources
 Route::resource('companies', 'CompanyController');
-Route::resource('tasks', 'CompanyController');
+Route::resource('tasks', 'TaskController');
 
 //Don't need full resource controller for timers
 Route::post('/times', 'TimerController@store')->name('timers.store');
