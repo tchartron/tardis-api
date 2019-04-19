@@ -18,4 +18,9 @@ class Timer extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
 }

@@ -10,8 +10,13 @@ class Company extends Model
 
     // protected $guarded = [];
 
-    public function timer()
+    public function timers()
     {
         return $this->hasMany(Timer::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

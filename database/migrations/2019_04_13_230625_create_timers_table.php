@@ -17,7 +17,8 @@ class CreateTimersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('company_id');
-            $table->time('total_time');
+            $table->unsignedInteger('task_id');
+            $table->datetime('finished_at');
             $table->timestamps();
         });
     }
