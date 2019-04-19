@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Time;
 use Illuminate\Http\Request;
 
-class TimeController extends Controller
+class TimerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class TimeController extends Controller
      */
     public function index()
     {
-        $times = Time::all();
-        return view('times.index', compact('times'));
+        $timers = Timer::all();
+        return view('timers.index', compact('timers'));
     }
     /**
      * Store a newly created resource in storage.
@@ -36,11 +36,11 @@ class TimeController extends Controller
         //     'company_id' => request('company_id'),
         //     'total_time' => request('total_time')
         // ]);
-        $time = new Time();
-        $time->user_id = \Auth::user()->id; //or auth()->user()->id
-        $time->company_id = request('company_id');
-        $time->total_time = request('total_time');
-        $time->save();
+        $timer = new Timer();
+        $timer->user_id = \Auth::user()->id; //or auth()->user()->id
+        $timer->company_id = request('company_id');
+        $timer->total_time = request('total_time');
+        $timer->save();
         return back(); // redirect to previous page
     }
 
@@ -50,9 +50,9 @@ class TimeController extends Controller
      * @param  \App\Time  $time
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Time $time)
+    public function destroy(Timer $timer)
     {
-        $time->delete();
+        $timer->delete();
         return back();
     }
 }

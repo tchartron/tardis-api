@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Time extends Model
+class Timer extends Model
 {
 
     protected $fillable = ['total_time'];
