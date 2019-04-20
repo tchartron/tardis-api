@@ -8,7 +8,8 @@
                 <div class="card-header">Create a new task</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('tasks.store') }}">
+                    {{-- <form method="POST" action="{{ route('tasks.store', ['company' => Request()->id_company ]) }}"> --}} {{-- Retrieve get parameter --}}
+                    <form method="POST" action="{{ route('tasks.store', request('company'))}}">
                         @csrf
 
                         <div class="form-group row">

@@ -18,7 +18,7 @@
                     <hr />
                     <div class="text-center">
                         <h5 class="card-title">{{ __('Tasks for') }} {{ $company->name }}</h5>
-                        <a class="btn btn-secondary" href="{{ route('companies.index') }}" role="button"><-{{ __('Create new task for') }} {{ $company->name }}</a>
+                        <a class="btn btn-secondary" href="{{ route('tasks.create', ['company' => $company->id]) }}" role="button">{{ __('Create new task for') }} {{ $company->name }}</a>
                         <div class="card-text">
                             {{-- List of tasks --}}
                         </div>

@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\Company;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,19 +40,39 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Company $company)
     {
-        // dd(request()->all());
         request()->validate([
             'title' => ['required', 'min:3'],
             'description' => ['required', 'min:10']
         ]);
+        ///////////////////
+        //First approach //
+        ///////////////////
+        $task = new Task();
+        $task->title = request('title');
+        $task->description = request('description');
+        $task->user_id = \Auth::user()->id;
+        $company->tasks()->save($task);
 
-        Task::create([
-            'title' => request('title'),
-            'description' => request('description'),
-            'completed' => request('completed')
-        ]);
+        ////////////////////
+        //Second approach //
+        ////////////////////
+        // $company->addTask(request(['title', 'description']));
+
+        ///////////////////
+        //Third approach //
+        ///////////////////
+        // $task = new Task();
+        // $task->title = request('title');
+        // $task->description = request('description');
+        // // $task->user_id = \Auth::user()->id;
+        // $task->user()->associate(\Auth::user());
+        // // $task->company_id = $company->id;
+        // $task->company()->associate($company);
+        // $task->save();
+
+        return back();
     }
 
     /**
