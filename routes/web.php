@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Resources
 Route::resource('companies', 'CompanyController');
 // Route::resource('tasks', 'TaskController');
+
 Route::get('/tasks', 'TaskController@store')->name('tasks.index');
 // Route::post('/tasks', 'TaskController@store')->name('tasks.store'); // How to fetch associated company ?
 Route::post('/companies/{company}/tasks', 'TaskController@store')->name('tasks.store');
