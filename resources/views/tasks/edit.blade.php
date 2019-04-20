@@ -43,7 +43,7 @@
                             <label for="completed" class="col-md-4 col-form-label text-md-right">{{ __('Completed') }}</label>
 
                             <div class="col-md-6">
-                               <input name="completed" class="form-check-input{{ $errors->has('completed') ? ' is-invalid' : '' }}" type="checkbox" value="" id="completed">
+                               <input name="completed" class="form-check-input{{ $errors->has('completed') ? ' is-invalid' : '' }}" type="checkbox" value="on" id="completed">
                                {{--  <label class="form-check-label" for="completed">
                                     Default checkbox
                                 </label> --}}

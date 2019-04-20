@@ -8,13 +8,13 @@
                 <div class="card-header">Tasks</div>
 
                 <div class="card-body">
-                    <a href="{{ route('tasks.create') }}" class="btn btn-primary" role="button">{{ __('Create new task') }}</a>
+                    {{-- <a href="{{ route('tasks.create') }}" class="btn btn-primary" role="button">{{ __('Create new task') }}</a> --}}
                     <hr />
                     @foreach ($tasks as $task)
                         <div class="row mt-2">
                             <div class="col-md-12">
                                 <div>
-                                    <span class="font-weight-bold">{{ __('Name :') }}</span>
+                                    <span class="font-weight-bold">{{ __('Title :') }}</span>
                                     <a class="" href="/tasks/{{ $task->id }}">{{ $task->title }}</a>
                                 </div>
                                 <div>

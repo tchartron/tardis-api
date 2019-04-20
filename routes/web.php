@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('companies', 'CompanyController');
 // Route::resource('tasks', 'TaskController');
 
-Route::get('/tasks', 'TaskController@store')->name('tasks.index');
+Route::get('/tasks', 'TaskController@index')->name('tasks.index');
 // Route::post('/tasks', 'TaskController@store')->name('tasks.store'); // How to fetch associated company ?
 Route::post('/companies/{company}/tasks', 'TaskController@store')->name('tasks.store');
 // Route::get('/tasks/create', 'TaskController@create')->name('tasks.create'); // exemple with get parameter 'id_company' passed from companies/show on button create new task

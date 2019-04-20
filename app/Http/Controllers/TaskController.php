@@ -106,7 +106,18 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        // dd(request()->all());
+        request()->validate([
+            'title' => ['required', 'min:3'],
+            'description' => ['required', 'min:10']
+        ]);
+        // $task->update(request()->all());
+        $task->update([
+            'title' => request('title'),
+            'description' => request('description'),
+            'completed' => request()->has('completed')
+        ]);
+        return redirect('/tasks');
     }
 
     /**
