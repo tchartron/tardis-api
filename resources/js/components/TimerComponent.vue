@@ -23,7 +23,7 @@ export default {
             };
         },
     mounted() {
-        console.log(this.seconds);
+        // console.log({!! json_encode($company->id) !!})
     },
     methods: {
         startTimer() {
