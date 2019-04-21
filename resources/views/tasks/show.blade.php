@@ -18,6 +18,15 @@
                     </div>
                     <hr />
                     <div class="text-center">
+                        <h5 class="card-title">{{ __('Work task') }} {{ $task->title }}</h5>
+                        <div class="card-text">
+                            <div id="timer" class="timer">
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="text-center">
                         <h5 class="card-title">{{ __('Times spent on task') }} {{ $task->title }}</h5>
                         <div class="card-text">
                             {{-- List of times --}}
