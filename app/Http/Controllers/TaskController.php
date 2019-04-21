@@ -52,8 +52,8 @@ class TaskController extends Controller
         $task = new Task();
         $task->title = request('title');
         $task->description = request('description');
-        $task->user_id = \Auth::user()->id;
-        $company->tasks()->save($task);
+        // $task->user_id = \Auth::user()->id;
+        $company->tasks()->save($task); // Saves the company_id type hinted as the relation
 
         ////////////////////
         //Second approach //
@@ -72,7 +72,7 @@ class TaskController extends Controller
         // $task->company()->associate($company);
         // $task->save();
 
-        return back();
+        return redirect('/companies/'.$company->id);
     }
 
     /**
