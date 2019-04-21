@@ -23,6 +23,7 @@
                             <div id="timer" class="">
                                  <timer-component></timer-component>
                             </div>
+                            <button id="stopTimer">Stop</button>
                         </div>
                     </div>
                     <hr />

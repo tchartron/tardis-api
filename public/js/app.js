@@ -1790,6 +1790,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     startTimer: function startTimer() {
+      var _this2 = this;
+
       console.log('click');
 
       var _this = this; // let hours = 0;
@@ -1800,7 +1802,11 @@ __webpack_require__.r(__webpack_exports__);
       this.interval = setInterval(function () {
         _this.tickTimer(); // console.log(this.seconds)
 
-      }, 1000);
+      }, 1000); //Send start request
+
+      axios.post('/times').then(function (response) {
+        _this2.posts = response.data;
+      });
     },
     pauseTimer: function pauseTimer() {
       clearInterval(this.interval);

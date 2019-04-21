@@ -14,7 +14,7 @@
 
     //VueJS stopwatch
 export default {
-    data: function() {
+    data() {
           return {
                 hours: 0,
                 minutes: 59,
@@ -22,7 +22,7 @@ export default {
                 interval: null
             };
         },
-    mounted: function() {
+    mounted() {
         console.log(this.seconds);
     },
     methods: {
@@ -36,6 +36,11 @@ export default {
                 _this.tickTimer();
                 // console.log(this.seconds)
             }, 1000);
+            //Send start request
+            axios.post('/times')
+                .then(response => {
+                    this.posts = response.data;
+                });
         },
         pauseTimer() {
             clearInterval(this.interval);
