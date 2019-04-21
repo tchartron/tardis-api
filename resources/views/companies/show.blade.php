@@ -19,9 +19,16 @@
                     <div class="text-center">
                         <h5 class="card-title">{{ __('Tasks for') }} {{ $company->name }}</h5>
                         <a class="btn btn-secondary" href="{{ route('tasks.create', ['company' => $company->id]) }}" role="button">{{ __('Create new task for') }} {{ $company->name }}</a>
+                        <hr />
                         <div class="card-text">
                             {{-- List of tasks --}}
+                            @foreach ($company->tasks as $task)
+                                <div class="task">
+                                    <a class="" href="{{ route('tasks.show', ['task' => $task->id]) }}">{{ $task->title }}</a>
+                                </div>
+                            @endforeach
                         </div>
+                    <hr />
                     </div>
                     {{-- <div class="text-center">
                         <h5 class="card-title">{{ __('Work for') }} {{ $company->name }}</h5>
@@ -35,7 +42,6 @@
                         <button id="reset" class="btn btn-danger">{{ __('Reset') }}</button><br /><hr />
                         <button id="save" class="btn btn-success" onclick="">{{ __('Save') }}</button>
                     </div> --}}
-                    <hr />
                     <div class="text-center">
                         <h5 class="card-title">{{ __('Time spent for') }} {{ $company->name }}</h5>
                         <div class="card-text">

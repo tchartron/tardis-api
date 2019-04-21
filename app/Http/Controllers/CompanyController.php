@@ -81,6 +81,9 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
+        //Done in view companies.show
+        // $tasks = $company->tasks;
+        // dd($tasks);
         return view('companies.show', compact('company'));
     }
 

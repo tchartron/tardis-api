@@ -12,6 +12,7 @@
                         <p class="lead">{{ $task->description }}</p>
                         <p class="lead"><span class="font-weight-bold">{{ __('Company :') }}</span> {{ $task->company_id }}</p>
                         <p class="lead"><span class="font-weight-bold">{{ __('User :') }}</span> {{ $task->user_id }}</p>
+                        <p class="lead"><span class="font-weight-bold">{{ __('Finished :') }}</span> {{ $task->completed }}</p>
                         <a class="btn btn-dark" href="{{ route('tasks.index') }}" role="button"><-{{ __('Back to tasks') }}</a>
                         <a class="btn btn-primary" href="{{ route('tasks.edit', ['id' => $task->id]) }}" role="button">{{ __('Edit') }} {{ $task->title }}</a>
                     </div>
