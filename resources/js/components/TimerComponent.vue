@@ -17,8 +17,8 @@ export default {
     data() {
           return {
                 hours: 0,
-                minutes: 59,
-                secondes: 40,
+                minutes: 0,
+                secondes: 0,
                 interval: null
             };
         },
