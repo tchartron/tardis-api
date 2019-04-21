@@ -17,9 +17,17 @@
                                     <span class="font-weight-bold">{{ __('Title :') }}</span>
                                     <a class="" href="/tasks/{{ $task->id }}">{{ $task->title }}</a>
                                 </div>
-                                <div>
+                           {{--      <div>
                                     <span class="font-weight-bold">{{ __('Description : ') }}</span>
                                     {{ $task->description }}
+                                </div> --}}
+                                <div>
+                                    <span class="font-weight-bold">{{ __('Company : ') }}</span>
+                                    {{ $task->company_id }}
+                                </div>
+                                <div>
+                                    <span class="font-weight-bold">{{ __('User : ') }}</span>
+                                    {{ $task->user_id }}
                                 </div>
                                 <a href="{{ route('tasks.edit', ['id' => $task->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}  {{ $task->title }}</a>
                             </div>
