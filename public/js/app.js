@@ -1758,10 +1758,103 @@ module.exports = {
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TimerComponent.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/thomas/dev/www/timeinator/resources/js/components/TimerComponent.vue: Unexpected token (26:21)\n\n\u001b[0m \u001b[90m 24 | \u001b[39m        }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 | \u001b[39m    mounted() {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 26 | \u001b[39m        console\u001b[33m.\u001b[39mlog({\u001b[33m!\u001b[39m\u001b[33m!\u001b[39m json_encode($company\u001b[33m-\u001b[39m\u001b[33m>\u001b[39mid) \u001b[33m!\u001b[39m\u001b[33m!\u001b[39m})\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 27 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 28 | \u001b[39m    methods\u001b[33m:\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 29 | \u001b[39m        startTimer() {\u001b[0m\n    at Parser.raise (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:3851:17)\n    at Parser.unexpected (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5167:16)\n    at Parser.parseIdentifierName (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:7007:18)\n    at Parser.parseIdentifier (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6985:23)\n    at Parser.parseMaybePrivateName (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6350:19)\n    at Parser.parsePropertyName (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6806:98)\n    at Parser.parseObjectMember (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6707:10)\n    at Parser.parseObj (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6641:25)\n    at Parser.parseExprAtom (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6274:21)\n    at Parser.parseExprSubscripts (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5914:23)\n    at Parser.parseMaybeUnary (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5894:21)\n    at Parser.parseExprOps (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5781:23)\n    at Parser.parseMaybeConditional (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5754:23)\n    at Parser.parseMaybeAssign (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5701:21)\n    at Parser.parseExprListItem (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6977:18)\n    at Parser.parseCallExpressionArguments (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6121:22)\n    at Parser.parseSubscript (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6016:29)\n    at Parser.parseSubscripts (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5935:19)\n    at Parser.parseExprSubscripts (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5924:17)\n    at Parser.parseMaybeUnary (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5894:21)\n    at Parser.parseExprOps (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5781:23)\n    at Parser.parseMaybeConditional (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5754:23)\n    at Parser.parseMaybeAssign (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5701:21)\n    at Parser.parseExpression (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:5649:23)\n    at Parser.parseStatementContent (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:7420:23)\n    at Parser.parseStatement (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:7291:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:7868:25)\n    at Parser.parseBlockBody (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:7855:10)\n    at Parser.parseBlock (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:7839:10)\n    at Parser.parseFunctionBody (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6909:24)\n    at Parser.parseFunctionBodyAndFinish (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6879:10)\n    at Parser.parseMethod (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6835:10)\n    at Parser.parseObjectMethod (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6751:19)\n    at Parser.parseObjPropValue (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6793:23)\n    at Parser.parseObjectMember (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6717:10)\n    at Parser.parseObj (/home/thomas/dev/www/timeinator/node_modules/@babel/parser/lib/index.js:6641:25)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//VueJS stopwatch
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['taskId'],
+  data: function data() {
+    return {
+      hours: 0,
+      minutes: 0,
+      secondes: 0,
+      interval: null
+    };
+  },
+  mounted: function mounted() {
+    console.log(this.taskId);
+  },
+  methods: {
+    startTimer: function startTimer() {
+      console.log('click');
+
+      var _this = this; // let hours = 0;
+      // let minutes = 0;
+      // let seconds = 0;
+
+
+      this.interval = setInterval(function () {
+        _this.tickTimer(); // console.log(this.seconds)
+
+      }, 1000); //Send start request
+
+      axios.post('/timers', {
+        task_id: this.taskId
+      }).then(function (response) {
+        console.log(response.data.timer.id);
+        document.getElementById('timer_id').val = response.data.timer.id;
+      }); // ).then(response => {
+      //     this.posts = response.data;
+      // });
+    },
+    pauseTimer: function pauseTimer() {
+      clearInterval(this.interval);
+    },
+    // stopTimer() {
+    //     axios.post('/times', {
+    //             task_id: this.taskId
+    //         });
+    // },
+    tickTimer: function tickTimer() {
+      this.secondes++;
+
+      if (this.secondes > 59) {
+        this.minutes++;
+        this.secondes = 0;
+
+        if (this.minutes > 59) {
+          this.hours++;
+          this.minutes = 0;
+        }
+      }
+    }
+  } //Ajax post request example
+  //  export default {
+  //     props: ['user'],
+  //     data: function () {
+  //         return {
+  //             posts: []
+  //         };
+  //     },
+  //     mounted: function () {
+  //         this.getPosts();
+  //     },
+  //     methods: {
+  //         getPosts: function () {
+  //             axios.get('/posts')
+  //                 .then(response => {
+  //                     this.posts = response.data;
+  //                 });
+  //         }
+  //     }
+  // }
+
+});
 
 /***/ }),
 
@@ -49378,15 +49471,14 @@ if (token) {
 /*!****************************************************!*\
   !*** ./resources/js/components/TimerComponent.vue ***!
   \****************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TimerComponent_vue_vue_type_template_id_11a6bb3a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TimerComponent.vue?vue&type=template&id=11a6bb3a& */ "./resources/js/components/TimerComponent.vue?vue&type=template&id=11a6bb3a&");
 /* harmony import */ var _TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TimerComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/TimerComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -49416,15 +49508,13 @@ component.options.__file = "resources/js/components/TimerComponent.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/TimerComponent.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TimerComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimerComponent.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

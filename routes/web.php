@@ -32,7 +32,8 @@ Route::delete('/tasks/{task}', 'TaskController@destroy')->name('tasks.destroy');
 Route::get('/tasks/{task}/edit', 'TaskController@edit')->name('tasks.edit');
 
 //Don't need full resource controller for timers
-Route::post('/times', 'TimerController@store')->name('timers.store');
+Route::post('/timers', 'TimerController@store')->name('timers.store');
 // Route::post('/companies/{company}/times', 'TimerController@store')->name('timers.store'); // Jeffrey's way of doing things watch lfs-from-scratch ep 18
-Route::get('/times', 'TimerController@index')->name('timers.index');
-Route::delete('/times/{time}', 'TimerController@destroy')->name('timers.destroy');
+Route::get('/timers', 'TimerController@index')->name('timers.index');
+Route::match(['put', 'patch'], '/timers/{timer}', 'TimerController@update')->name('timers.update');
+Route::delete('/timers/{timer}', 'TimerController@destroy')->name('timers.destroy');

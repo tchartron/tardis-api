@@ -14,6 +14,7 @@
 
     //VueJS stopwatch
 export default {
+    props: ['taskId'],
     data() {
           return {
                 hours: 0,
@@ -23,7 +24,7 @@ export default {
             };
         },
     mounted() {
-        // console.log({!! json_encode($company->id) !!})
+        console.log(this.taskId)
     },
     methods: {
         startTimer() {
@@ -37,14 +38,24 @@ export default {
                 // console.log(this.seconds)
             }, 1000);
             //Send start request
-            axios.post('/times')
-                .then(response => {
-                    this.posts = response.data;
+            axios.post('/timers', {
+                    task_id: this.taskId
+                }).then(function(response) {
+                    console.log(response.data.timer.id)
+                    document.getElementById('timer_id').val = response.data.timer.id;
                 });
+                // ).then(response => {
+                //     this.posts = response.data;
+                // });
         },
         pauseTimer() {
             clearInterval(this.interval);
         },
+        // stopTimer() {
+        //     axios.post('/times', {
+        //             task_id: this.taskId
+        //         });
+        // },
         tickTimer() {
             this.secondes++;
             if(this.secondes > 59) {

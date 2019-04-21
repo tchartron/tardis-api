@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Timer;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TimerController extends Controller
 {
@@ -32,8 +33,8 @@ class TimerController extends Controller
     {
         // dd(request());
         request()->validate([
-            'company_id' => ['required', 'integer'],
-            'total_time' => ['required', 'date_format:H:i:s']
+            'task_id' => ['required', 'integer']
+            // 'finished_at' => ['required', 'date_format:H:i:s']
         ]);
         //NOT WORKINGit says user_id does not have a default value ...
         // Time::create([
@@ -43,10 +44,26 @@ class TimerController extends Controller
         // ]);
         $timer = new Timer();
         $timer->user_id = \Auth::user()->id; //or auth()->user()->id
-        $timer->company_id = request('company_id');
-        $timer->total_time = request('total_time');
+        $timer->task_id = request('task_id');
+        $timer->finished_at = Carbon::now();
         $timer->save();
-        return back(); // redirect to previous page
+        return response()->json([
+            'timer' => $timer
+        ]);
+        // return back(); // no need to return it's called via ajax at timer start
+    }
+
+    public function update(Request $request, Timer $timer)
+    {
+        // request()->validate([
+        //     'task_id' => ['required', 'integer']
+        //     // 'finished_at' => ['required', 'date_format:H:i:s']
+        // ]);
+
+        $timer->update([
+            'finished_at' => Carbon::now()
+        ]);
+        // return redirect('/tasks'); // called via ajax when timer stop button pressed
     }
 
     /**

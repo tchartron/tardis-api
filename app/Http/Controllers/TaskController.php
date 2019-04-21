@@ -111,7 +111,17 @@ class TaskController extends Controller
             'title' => ['required', 'min:3'],
             'description' => ['required', 'min:10']
         ]);
-        // $task->update(request()->all());
+
+        ///////////////////
+        //First approach //
+        ///////////////////
+        // $task->title = request('title');
+        // $task->description = request('description');
+        // $task->save();
+
+        ////////////////////
+        //Second approach //
+        ////////////////////
         $task->update([
             'title' => request('title'),
             'description' => request('description'),
