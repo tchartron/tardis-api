@@ -20,8 +20,8 @@
                     <div class="text-center">
                         <h5 class="card-title">{{ __('Work task') }} {{ $task->title }}</h5>
                         <div class="card-text">
-                            <div id="timer" class="timer">
-
+                            <div id="timer" class="">
+                                 <timer-component></timer-component>
                             </div>
                         </div>
                     </div>
