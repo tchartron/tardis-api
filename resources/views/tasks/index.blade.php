@@ -23,12 +23,12 @@
                                 </div> --}}
                                 <div>
                                     <span class="font-weight-bold">{{ __('Company : ') }}</span>
-                                    {{ $task->company_id }}
+                                    {{ $task->company->name }}
                                 </div>
-                                <div>
+                                {{-- <div>
                                     <span class="font-weight-bold">{{ __('User : ') }}</span>
-                                    {{ $task->user_id }}
-                                </div>
+                                    {{ $task->user }}
+                                </div> --}}
                                 <a href="{{ route('tasks.edit', ['id' => $task->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}  {{ $task->title }}</a>
                             </div>
                         </div>
