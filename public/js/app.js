@@ -1775,9 +1775,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //VueJS stopwatch
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['taskId', 'runningTimerSeconds'],
+  props: ['taskId', 'runningTimerSeconds', 'timerId'],
   data: function data() {
     return {
       hours: 0,
@@ -1789,7 +1790,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log(this.runningTimerSeconds); // (runningTimerSeconds !== 0) ?
+    console.log(this.runningTimerSeconds);
+    console.log(this.timerId); // (runningTimerSeconds !== 0) ?
     // let res = this.calculateTimerValue(this.runningTimerSeconds);
     // console.log(res)
     // console.log(calculateTimerValue(this.runningTimerSeconds));
@@ -1820,8 +1822,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/timers', {
         task_id: this.taskId
       }).then(function (response) {
-        console.log(response.data.timer.id);
-        document.getElementById('timer_id').val = response.data.timer.id;
+        console.log(response.data); //Setting created timer id for the stop action
+
+        _this.timerId = response.data.timer.id; // document.getElementById('timer_id').val = response.data.timer.id; //THIS IS WRONG !!!
       }); // ).then(response => {
       //     this.posts = response.data;
       // });
@@ -1841,11 +1844,9 @@ __webpack_require__.r(__webpack_exports__);
         }, 1000);
       }
     },
-    // stopTimer() {
-    //     axios.post('/times', {
-    //             task_id: this.taskId
-    //         });
-    // },
+    stopTimer: function stopTimer() {
+      axios.patch('/timers/' + this.timerId, {});
+    },
     tickTimer: function tickTimer() {
       this.secondes++;
 
@@ -37209,7 +37210,7 @@ var render = function() {
             attrs: { id: "start" },
             on: {
               click: function($event) {
-                _vm.startTimer
+                _vm.startTimer()
                 _vm.startHidden = true
               }
             }
@@ -37220,6 +37221,10 @@ var render = function() {
     _vm._v(" "),
     _c("button", { attrs: { id: "action" }, on: { click: _vm.actionTimer } }, [
       _vm._v(_vm._s(_vm.actionButton))
+    ]),
+    _vm._v(" "),
+    _c("button", { attrs: { id: "action" }, on: { click: _vm.stopTimer } }, [
+      _vm._v("Stop")
     ])
   ])
 }

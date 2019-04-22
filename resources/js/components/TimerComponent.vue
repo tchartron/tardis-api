@@ -5,8 +5,9 @@
             <span class="label label-primary">{{ minutes }}</span> minutes
             <span class="label label-primary">{{ secondes }}</span> secondes
         </h1>
-        <button id ="start" @click="startTimer;startHidden = true;" v-if="!startHidden">Start</button>
+        <button id ="start" @click="startTimer();startHidden = true;" v-if="!startHidden">Start</button>
         <button id ="action" @click="actionTimer">{{ actionButton }}</button>
+        <button id ="action" @click="stopTimer">Stop</button>
     </div>
 </template>
 
@@ -14,7 +15,7 @@
 
     //VueJS stopwatch
 export default {
-    props: ['taskId', 'runningTimerSeconds'],
+    props: ['taskId', 'runningTimerSeconds', 'timerId'],
     data() {
           return {
                 hours: 0,
@@ -27,6 +28,7 @@ export default {
         },
     mounted() {
         console.log(this.runningTimerSeconds)
+        console.log(this.timerId)
         // (runningTimerSeconds !== 0) ?
         // let res = this.calculateTimerValue(this.runningTimerSeconds);
         // console.log(res)
@@ -54,8 +56,11 @@ export default {
             axios.post('/timers', {
                     task_id: this.taskId
                 }).then(function(response) {
-                    console.log(response.data.timer.id)
-                    document.getElementById('timer_id').val = response.data.timer.id;
+                    console.log(response.data)
+                    //Setting created timer id for the stop action
+                    _this.timerId = response.data.timer.id;
+                    //Reload page ?
+                    // document.getElementById('timer_id').val = response.data.timer.id; //THIS IS WRONG !!!
                 });
                 // ).then(response => {
                 //     this.posts = response.data;
@@ -75,11 +80,9 @@ export default {
                 }, 1000);
             }
         },
-        // stopTimer() {
-        //     axios.post('/times', {
-        //             task_id: this.taskId
-        //         });
-        // },
+        stopTimer() {
+            axios.patch('/timers/'+this.timerId, {});
+        },
         tickTimer() {
             this.secondes++;
             if(this.secondes > 59) {

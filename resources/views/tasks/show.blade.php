@@ -22,12 +22,12 @@
                         <div class="card-text">
                             <div id="timer" class="">
                                 {{-- {{ var_dump($runningTimerSeconds) }} --}}
-                                 <timer-component :task-id="'{!! json_encode($task->id) !!}'" :running-timer-seconds='{!! json_encode($runningTimerSeconds) !!}'></timer-component>
+                                 <timer-component :task-id="'{!! json_encode($task->id) !!}'" :running-timer-seconds='{!! json_encode($runningTimerSeconds) !!}' :timer-id='{!! json_encode($timerId) !!}'></timer-component>
                             </div>
                              <form method="POST" action="{{ route('timers.update', ['timer' => 2]) }}">
                                 @csrf
                                 @method('PATCH')
-                                <input id="timer_id" name="timer_id" type="hidden" value="0" />
+                                {{-- <input id="timer_id" name="timer_id" type="hidden" value="0" /> THIS IS WRONG !!! --}}
                                 <button id="stopTimer" type="submit">Stop</button>
                             </form>
                         </div>
