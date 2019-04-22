@@ -83,6 +83,9 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        //Retrieve Timer
+        // Query for timer belonging to this user and this task => pass data to view so we can pass the data to Vue for the stop button to update the timer
+        // if no timer initialize a new one
         return view('tasks.show', compact('task'));
     }
 
