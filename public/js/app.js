@@ -1775,7 +1775,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+// <button id ="action" @click="actionTimer">{{ actionButton }}</button>
 //VueJS stopwatch
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['taskId', 'runningTimerSeconds', 'timerId'],
@@ -1823,8 +1823,8 @@ __webpack_require__.r(__webpack_exports__);
         task_id: this.taskId
       }).then(function (response) {
         console.log(response.data); //Setting created timer id for the stop action
-
-        _this.timerId = response.data.timer.id; // document.getElementById('timer_id').val = response.data.timer.id; //THIS IS WRONG !!!
+        // _this.timerId = response.data.timer.id;
+        // document.getElementById('timer_id').val = response.data.timer.id; //THIS IS WRONG !!!
       }); // ).then(response => {
       //     this.posts = response.data;
       // });
@@ -37220,10 +37220,6 @@ var render = function() {
           [_vm._v("Start")]
         )
       : _vm._e(),
-    _vm._v(" "),
-    _c("button", { attrs: { id: "action" }, on: { click: _vm.actionTimer } }, [
-      _vm._v(_vm._s(_vm.actionButton))
-    ]),
     _vm._v(" "),
     _c("button", { attrs: { id: "action" }, on: { click: _vm.stopTimer } }, [
       _vm._v("Stop")

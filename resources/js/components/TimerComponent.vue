@@ -6,13 +6,13 @@
             <span class="label label-primary">{{ secondes }}</span> secondes
         </h1>
         <button id ="start" @click="startTimer();startHidden = true;" v-if="!startHidden">Start</button>
-        <button id ="action" @click="actionTimer">{{ actionButton }}</button>
         <button id ="action" @click="stopTimer">Stop</button>
     </div>
 </template>
 
 <script type="text/javascript">
 
+        // <button id ="action" @click="actionTimer">{{ actionButton }}</button>
     //VueJS stopwatch
 export default {
     props: ['taskId', 'runningTimerSeconds', 'timerId'],
@@ -58,7 +58,7 @@ export default {
                 }).then(function(response) {
                     console.log(response.data)
                     //Setting created timer id for the stop action
-                    _this.timerId = response.data.timer.id;
+                    _this.timerId = response.data.timer.id; // This throws a warning about avoid mutating a props directly cause value could be overwritten
                     // document.getElementById('timer_id').val = response.data.timer.id; //THIS IS WRONG !!!
                 });
                 // ).then(response => {
