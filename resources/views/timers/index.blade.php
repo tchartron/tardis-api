@@ -15,15 +15,15 @@
                             <div class="col-md-12">
                                 <div>
                                     <span class="font-weight-bold">{{ __('By user : ') }}</span>
-                                    {{ $timer->user_id }}
+                                    {{ $timer->user->name }}
                                 </div>
                                 <div>
                                     <span class="font-weight-bold">{{ __('For company : ') }}</span>
-                                    {{ $timer->company_id }}
+                                    {{ $timer->task->company->name }} {{-- Oh my fucking god !!!!!!!!!!!!! --}}
                                 </div>
                                 <div>
-                                    <span class="font-weight-bold">{{ __('Timer value : ') }}</span>
-                                    {{ $timer->total_time }}
+                                    <span class="font-weight-bold">{{ __('Time spent : ') }}</span>
+                                    {{ $timer->getTimeSpent() }}
                                 </div>
                                 {{-- <a href="{{ route('companies.edit', ['id' => $timer->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}  {{ $timer->name }}</a> --}}
                             </div>
