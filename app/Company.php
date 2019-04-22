@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Company extends Model
 {
@@ -34,4 +35,15 @@ class Company extends Model
         //     'description' => $task['description'],
         // ]);
     }
+
+    public function totalTimeSpent() //later add date picker in view for peroid range
+    {
+        $tasks = $this->tasks;
+        dd($tasks);
+        foreach ($tasks as $key => $value) {
+            dd($value->timers);
+        }
+        dd($tasks);
+    }
+
 }

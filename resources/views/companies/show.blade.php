@@ -46,6 +46,7 @@
                         <h5 class="card-title">{{ __('Time spent for') }} {{ $company->name }}</h5>
                         <div class="card-text">
                             {{-- List of timers --}}
+                            {{ $company->totalTimeSpent() }}
                         </div>
                     </div>
                     <hr />
