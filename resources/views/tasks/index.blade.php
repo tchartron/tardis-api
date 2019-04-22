@@ -17,13 +17,17 @@
                                     <span class="font-weight-bold">{{ __('Title :') }}</span>
                                     <a class="" href="/tasks/{{ $task->id }}">{{ $task->title }}</a>
                                 </div>
-                           {{--      <div>
-                                    <span class="font-weight-bold">{{ __('Description : ') }}</span>
-                                    {{ $task->description }}
-                                </div> --}}
                                 <div>
                                     <span class="font-weight-bold">{{ __('Company : ') }}</span>
                                     {{ $task->company->name }}
+                                </div>
+                                <div>
+                                    <span class="font-weight-bold">{{ __('Status : ') }}</span>
+                                    @if (!$task->completed)
+                                        {{ __('Open') }}
+                                    @else
+                                        {{ __('Closed') }}
+                                    @endif
                                 </div>
                                 {{-- <div>
                                     <span class="font-weight-bold">{{ __('User : ') }}</span>

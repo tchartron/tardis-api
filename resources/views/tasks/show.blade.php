@@ -10,27 +10,35 @@
                 <div class="card-body">
                     <div class="my-2">
                         <p class="lead">{{ $task->description }}</p>
-                        <p class="lead"><span class="font-weight-bold">{{ __('Company :') }}</span> {{ $task->company_id }}</p>
+                        <p class="lead"><span class="font-weight-bold">{{ __('Company :') }}</span> {{ $task->company->name }}</p>
                         {{-- <p class="lead"><span class="font-weight-bold">{{ __('User :') }}</span> {{ $task->user_id }}</p> --}}
-                        <p class="lead"><span class="font-weight-bold">{{ __('Finished :') }}</span> {{ $task->completed }}</p>
+                         @if (!$task->completed)
+                            <p class="lead"><span class="font-weight-bold text-success">{{ __('Status : Open') }}</span></p>
+                        @else
+                            <p class="lead"><span class="font-weight-bold text-danger">{{ __('Status : Closed') }}</span></p>
+                        @endif
                         <a class="btn btn-dark" href="{{ route('tasks.index') }}" role="button"><-{{ __('Back to tasks') }}</a>
                         <a class="btn btn-primary" href="{{ route('tasks.edit', ['id' => $task->id]) }}" role="button">{{ __('Edit') }} {{ $task->title }}</a>
                     </div>
                     <hr />
                     <div class="text-center">
-                        <h5 class="card-title">{{ __('Work task') }} {{ $task->title }}</h5>
-                        <div class="card-text">
-                            <div id="timer" class="">
-                                {{-- {{ var_dump($runningTimerSeconds) }} --}}
-                                 <timer-component :task-id="'{!! json_encode($task->id) !!}'" :running-timer-seconds='{!! json_encode($runningTimerSeconds) !!}' :timer-id='{!! json_encode($timerId) !!}'></timer-component>
+                        @if (!$task->completed)
+                            <h5 class="card-title">{{ __('Work on task :') }} {{ $task->title }}</h5>
+                            <div class="card-text">
+                                <div id="timer" class="">
+                                    {{-- {{ var_dump($runningTimerSeconds) }} --}}
+                                     <timer-component :task-id="'{!! json_encode($task->id) !!}'" :running-timer-seconds='{!! json_encode($runningTimerSeconds) !!}' :timer-id='{!! json_encode($timerId) !!}'></timer-component>
+                                </div>
+                                 {{-- <form method="POST" action="{{ route('timers.update', ['timer' => 2]) }}">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input id="timer_id" name="timer_id" type="hidden" value="0" />
+                                    <button id="stopTimer" type="submit">Stop</button>
+                                </form> --}}
                             </div>
-                             {{-- <form method="POST" action="{{ route('timers.update', ['timer' => 2]) }}">
-                                @csrf
-                                @method('PATCH')
-                                <input id="timer_id" name="timer_id" type="hidden" value="0" />
-                                <button id="stopTimer" type="submit">Stop</button>
-                            </form> --}}
-                        </div>
+                        @else
+                            <h5 class="card-title">{{ __('This task is closed reopen it to work on it') }}</h5>
+                        @endif
                     </div>
                     <hr />
                     <div class="text-center">
