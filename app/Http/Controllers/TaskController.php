@@ -86,7 +86,15 @@ class TaskController extends Controller
         //Retrieve Timer
         // Query for timer belonging to this user and this task => pass data to view so we can pass the data to Vue for the stop button to update the timer
         // if no timer initialize a new one
-        return view('tasks.show', compact('task'));
+        $user = \Auth::user();
+        //Getting timers of this task which belongs to logged user and are not finished
+        $userRunningTimers = $task->timers()
+                        ->where([
+                            ['user_id', $user->id],
+                            ['finished_at', '>', \DB::raw('created_at')]
+                        ])->get(); //Use toSql to see query and DB::raw() is to compare two columns values
+        // dd($userRuningTimers);
+        return view('tasks.show', ['task' => $task, 'userRunningTimers' => $userRunningTimers]);
     }
 
     /**

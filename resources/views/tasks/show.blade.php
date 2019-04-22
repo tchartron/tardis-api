@@ -21,7 +21,8 @@
                         <h5 class="card-title">{{ __('Work task') }} {{ $task->title }}</h5>
                         <div class="card-text">
                             <div id="timer" class="">
-                                 <timer-component :task-id="'{!! json_encode($task->id) !!}'"></timer-component>
+                                {{-- {{ var_dump($userRunningTimers) }} --}}
+                                 <timer-component :task-id="'{!! json_encode($task->id) !!}'" :user-running-timers='{!! json_encode($userRunningTimers) !!}'></timer-component>
                             </div>
                              <form method="POST" action="{{ route('timers.update', ['timer' => 2]) }}">
                                 @csrf

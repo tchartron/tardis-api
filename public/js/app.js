@@ -1777,7 +1777,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //VueJS stopwatch
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['taskId'],
+  props: ['taskId', 'userRunningTimers'],
   data: function data() {
     return {
       hours: 0,
@@ -1787,7 +1787,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log(this.taskId);
+    console.log(this.userRunningTimers);
   },
   methods: {
     startTimer: function startTimer() {

@@ -14,7 +14,7 @@
 
     //VueJS stopwatch
 export default {
-    props: ['taskId'],
+    props: ['taskId', 'userRunningTimers'],
     data() {
           return {
                 hours: 0,
@@ -24,7 +24,7 @@ export default {
             };
         },
     mounted() {
-        console.log(this.taskId)
+        console.log(this.userRunningTimers)
     },
     methods: {
         startTimer() {
