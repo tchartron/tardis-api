@@ -1845,7 +1845,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     stopTimer: function stopTimer() {
-      axios.patch('/timers/' + this.timerId, {});
+      axios.patch('/timers/' + this.timerId).then(function () {
+        location.reload();
+      }); //We are reloading because we want to add stoped timer to timer list on task show page and we can't do this in the view with a form because we start timer via ajax and so the timerId is not known by the view when timer is started, we set the value via javascript on the response of the post request made to create it (the controller returns the created timer in json format). So it's either all via form and page reload (creation / stop) either all via ajax
     },
     tickTimer: function tickTimer() {
       this.secondes++;

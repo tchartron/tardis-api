@@ -24,12 +24,12 @@
                                 {{-- {{ var_dump($runningTimerSeconds) }} --}}
                                  <timer-component :task-id="'{!! json_encode($task->id) !!}'" :running-timer-seconds='{!! json_encode($runningTimerSeconds) !!}' :timer-id='{!! json_encode($timerId) !!}'></timer-component>
                             </div>
-                             <form method="POST" action="{{ route('timers.update', ['timer' => 2]) }}">
+                             {{-- <form method="POST" action="{{ route('timers.update', ['timer' => 2]) }}">
                                 @csrf
                                 @method('PATCH')
-                                {{-- <input id="timer_id" name="timer_id" type="hidden" value="0" /> THIS IS WRONG !!! --}}
+                                <input id="timer_id" name="timer_id" type="hidden" value="0" />
                                 <button id="stopTimer" type="submit">Stop</button>
-                            </form>
+                            </form> --}}
                         </div>
                     </div>
                     <hr />
@@ -37,6 +37,13 @@
                         <h5 class="card-title">{{ __('Times spent on task') }} {{ $task->title }}</h5>
                         <div class="card-text">
                             {{-- List of times --}}
+                            @foreach ($task->timers as $timer)
+                                <div>
+                                    <div>- By user : {{ $timer->user_id }}</div>
+                                    <div>- Started at : {{ $timer->created_at }}</div>
+                                    <div>- Finished at : {{ $timer->finished_at }}</div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <hr />
