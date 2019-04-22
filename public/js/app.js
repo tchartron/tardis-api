@@ -1784,7 +1784,8 @@ __webpack_require__.r(__webpack_exports__);
       minutes: 0,
       secondes: 0,
       interval: null,
-      startHidden: false
+      startHidden: false,
+      actionButton: "Pause"
     };
   },
   mounted: function mounted() {
@@ -1801,23 +1802,19 @@ __webpack_require__.r(__webpack_exports__);
     this.secondes = runningTimer.s;
 
     if (this.runningTimerSeconds !== 0) {
-      // this.startTimer(); // don't want to send creation request
       this.interval = setInterval(function () {
-        _this.tickTimer(); // console.log(this.seconds)
+        _this.tickTimer();
+      }, 1000); //If current timer running hide start
 
-      }, 1000);
+      this.startHidden = true;
     }
   },
   methods: {
     startTimer: function startTimer() {
-      var _this = this; // let hours = 0;
-      // let minutes = 0;
-      // let seconds = 0;
-
+      var _this = this;
 
       this.interval = setInterval(function () {
-        _this.tickTimer(); // console.log(this.seconds)
-
+        _this.tickTimer();
       }, 1000); //Send start request only if no timer is running
 
       axios.post('/timers', {
@@ -1828,10 +1825,21 @@ __webpack_require__.r(__webpack_exports__);
       }); // ).then(response => {
       //     this.posts = response.data;
       // });
-      //Now hide start button
     },
-    pauseTimer: function pauseTimer() {
-      clearInterval(this.interval);
+    actionTimer: function actionTimer() {
+      var _this = this;
+
+      if (this.interval != null) {
+        this.actionButton = "Start";
+        clearInterval(this.interval);
+        this.interval = null; //On clearInterval call nothing is returned, we need a way of tracking the pause
+      } else {
+        this.actionButton = "Pause"; //it's been paused start it again
+
+        this.interval = setInterval(function () {
+          _this.tickTimer();
+        }, 1000);
+      }
     },
     // stopTimer() {
     //     axios.post('/times', {
@@ -37210,8 +37218,8 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
-    _c("button", { attrs: { id: "pause" }, on: { click: _vm.pauseTimer } }, [
-      _vm._v("Pause")
+    _c("button", { attrs: { id: "action" }, on: { click: _vm.actionTimer } }, [
+      _vm._v(_vm._s(_vm.actionButton))
     ])
   ])
 }

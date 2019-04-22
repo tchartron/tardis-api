@@ -5,8 +5,8 @@
             <span class="label label-primary">{{ minutes }}</span> minutes
             <span class="label label-primary">{{ secondes }}</span> secondes
         </h1>
-        <button id ="start" @click="startTimer">Start</button>
-        <button id ="pause" @click="pauseTimer">Pause</button>
+        <button id ="start" @click="startTimer;startHidden = true;" v-if="!startHidden">Start</button>
+        <button id ="action" @click="actionTimer">{{ actionButton }}</button>
     </div>
 </template>
 
@@ -20,7 +20,9 @@ export default {
                 hours: 0,
                 minutes: 0,
                 secondes: 0,
-                interval: null
+                interval: null,
+                startHidden: false,
+                actionButton: "Pause"
             };
         },
     mounted() {
@@ -35,22 +37,18 @@ export default {
         this.minutes = runningTimer.m;
         this.secondes = runningTimer.s;
         if(this.runningTimerSeconds !== 0) {
-            // this.startTimer(); // don't want to send creation request
             this.interval = setInterval(function() {
                 _this.tickTimer();
-                // console.log(this.seconds)
             }, 1000);
+            //If current timer running hide start
+            this.startHidden = true;
         }
     },
     methods: {
         startTimer() {
             let _this = this;
-            // let hours = 0;
-            // let minutes = 0;
-            // let seconds = 0;
             this.interval = setInterval(function() {
                 _this.tickTimer();
-                // console.log(this.seconds)
             }, 1000);
             //Send start request only if no timer is running
             axios.post('/timers', {
@@ -62,10 +60,20 @@ export default {
                 // ).then(response => {
                 //     this.posts = response.data;
                 // });
-            // }
         },
-        pauseTimer() {
-            clearInterval(this.interval);
+        actionTimer() {
+            let _this = this;
+            if(this.interval != null) {
+                this.actionButton = "Start";
+                clearInterval(this.interval);
+                this.interval = null; //On clearInterval call nothing is returned, we need a way of tracking the pause
+            } else {
+                this.actionButton = "Pause";
+                //it's been paused start it again
+                this.interval = setInterval(function() {
+                    _this.tickTimer();
+                }, 1000);
+            }
         },
         // stopTimer() {
         //     axios.post('/times', {
