@@ -23,7 +23,8 @@ export default {
                 secondes: 0,
                 interval: null,
                 startHidden: false,
-                actionButton: "Pause"
+                actionButton: "Pause",
+                timerIdBeforeReload: 0
             };
         },
     mounted() {
@@ -58,8 +59,10 @@ export default {
                 }).then(function(response) {
                     console.log(response.data)
                     //Setting created timer id for the stop action
-                    _this.timerId = response.data.timer.id; // This throws a warning about avoid mutating a props directly cause value could be overwritten
+                    // _this.timerId = response.data.timer.id; // This throws a warning about avoid mutating a props directly cause value could be overwritten
+                    _this.timerIdBeforeReload = response.data.timer.id; // This throws a warning about avoid mutating a props directly cause value could be overwritten
                     // document.getElementById('timer_id').val = response.data.timer.id; //THIS IS WRONG !!!
+                    console.log(_this.timerIdBeforeReload)
                 });
                 // ).then(response => {
                 //     this.posts = response.data;
@@ -80,7 +83,11 @@ export default {
             }
         },
         stopTimer() {
-            axios.patch('/timers/'+this.timerId).then(function(){ location.reload(); }); //We are reloading because we want to add stoped timer to timer list on task show page and we can't do this in the view with a form because we start timer via ajax and so the timerId is not known by the view when timer is started, we set the value via javascript on the response of the post request made to create it (the controller returns the created timer in json format). So it's either all via form and page reload (creation / stop) either all via ajax
+            if(this.timerIdBeforeReload !== 0) {
+                axios.patch('/timers/'+this.timerIdBeforeReload).then(function(){ location.reload(); }); //We are reloading because we want to add stoped timer to timer list on task show page and we can't do this in the view with a form because we start timer via ajax and so the timerId is not known by the view when timer is started, we set the value via javascript on the response of the post request made to create it (the controller returns the created timer in json format). So it's either all via form and page reload (creation / stop) either all via ajax
+            } else {
+                axios.patch('/timers/'+this.timerId).then(function(){ location.reload(); });
+            }
 
         },
         tickTimer() {
