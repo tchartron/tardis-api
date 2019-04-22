@@ -14,7 +14,7 @@
 
     //VueJS stopwatch
 export default {
-    props: ['taskId', 'userRunningTimers'],
+    props: ['taskId', 'runningTimerSeconds'],
     data() {
           return {
                 hours: 0,
@@ -24,11 +24,26 @@ export default {
             };
         },
     mounted() {
-        console.log(this.userRunningTimers)
+        console.log(this.runningTimerSeconds)
+        // (runningTimerSeconds !== 0) ?
+        // let res = this.calculateTimerValue(this.runningTimerSeconds);
+        // console.log(res)
+        // console.log(calculateTimerValue(this.runningTimerSeconds));
+        let _this = this;
+        let runningTimer = this.calculateTimerValue(this.runningTimerSeconds);
+        this.hours = runningTimer.h;
+        this.minutes = runningTimer.m;
+        this.secondes = runningTimer.s;
+        if(this.runningTimerSeconds !== 0) {
+            // this.startTimer(); // don't want to send creation request
+            this.interval = setInterval(function() {
+                _this.tickTimer();
+                // console.log(this.seconds)
+            }, 1000);
+        }
     },
     methods: {
         startTimer() {
-            console.log('click');
             let _this = this;
             // let hours = 0;
             // let minutes = 0;
@@ -37,7 +52,7 @@ export default {
                 _this.tickTimer();
                 // console.log(this.seconds)
             }, 1000);
-            //Send start request
+            //Send start request only if no timer is running
             axios.post('/timers', {
                     task_id: this.taskId
                 }).then(function(response) {
@@ -47,6 +62,7 @@ export default {
                 // ).then(response => {
                 //     this.posts = response.data;
                 // });
+            // }
         },
         pauseTimer() {
             clearInterval(this.interval);
@@ -66,6 +82,15 @@ export default {
                     this.minutes = 0;
                 }
             }
+        },
+        calculateTimerValue(totalSeconds) {
+            // m = Math.floor(totalSeconds / 60);
+            // s = totalSeconds - m * 60;
+            // h = Math.floor(totalSeconds / 3600);
+            let h = totalSeconds / 3600;
+            let m = (totalSeconds % 3600) / 60;
+            let s = totalSeconds % 60;
+            return {s: Math.trunc(s), m: Math.trunc(m), h: Math.trunc(h)};
         }
     }
 }

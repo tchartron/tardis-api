@@ -1777,22 +1777,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //VueJS stopwatch
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['taskId', 'userRunningTimers'],
+  props: ['taskId', 'runningTimerSeconds'],
   data: function data() {
     return {
       hours: 0,
       minutes: 0,
       secondes: 0,
-      interval: null
+      interval: null,
+      startHidden: false
     };
   },
   mounted: function mounted() {
-    console.log(this.userRunningTimers);
+    console.log(this.runningTimerSeconds); // (runningTimerSeconds !== 0) ?
+    // let res = this.calculateTimerValue(this.runningTimerSeconds);
+    // console.log(res)
+    // console.log(calculateTimerValue(this.runningTimerSeconds));
+
+    var _this = this;
+
+    var runningTimer = this.calculateTimerValue(this.runningTimerSeconds);
+    this.hours = runningTimer.h;
+    this.minutes = runningTimer.m;
+    this.secondes = runningTimer.s;
+
+    if (this.runningTimerSeconds !== 0) {
+      // this.startTimer(); // don't want to send creation request
+      this.interval = setInterval(function () {
+        _this.tickTimer(); // console.log(this.seconds)
+
+      }, 1000);
+    }
   },
   methods: {
     startTimer: function startTimer() {
-      console.log('click');
-
       var _this = this; // let hours = 0;
       // let minutes = 0;
       // let seconds = 0;
@@ -1801,7 +1818,7 @@ __webpack_require__.r(__webpack_exports__);
       this.interval = setInterval(function () {
         _this.tickTimer(); // console.log(this.seconds)
 
-      }, 1000); //Send start request
+      }, 1000); //Send start request only if no timer is running
 
       axios.post('/timers', {
         task_id: this.taskId
@@ -1811,6 +1828,7 @@ __webpack_require__.r(__webpack_exports__);
       }); // ).then(response => {
       //     this.posts = response.data;
       // });
+      //Now hide start button
     },
     pauseTimer: function pauseTimer() {
       clearInterval(this.interval);
@@ -1832,6 +1850,19 @@ __webpack_require__.r(__webpack_exports__);
           this.minutes = 0;
         }
       }
+    },
+    calculateTimerValue: function calculateTimerValue(totalSeconds) {
+      // m = Math.floor(totalSeconds / 60);
+      // s = totalSeconds - m * 60;
+      // h = Math.floor(totalSeconds / 3600);
+      var h = totalSeconds / 3600;
+      var m = totalSeconds % 3600 / 60;
+      var s = totalSeconds % 60;
+      return {
+        s: Math.trunc(s),
+        m: Math.trunc(m),
+        h: Math.trunc(h)
+      };
     }
   } //Ajax post request example
   //  export default {
@@ -37163,9 +37194,21 @@ var render = function() {
       _vm._v(" secondes\n    ")
     ]),
     _vm._v(" "),
-    _c("button", { attrs: { id: "start" }, on: { click: _vm.startTimer } }, [
-      _vm._v("Start")
-    ]),
+    !_vm.startHidden
+      ? _c(
+          "button",
+          {
+            attrs: { id: "start" },
+            on: {
+              click: function($event) {
+                _vm.startTimer
+                _vm.startHidden = true
+              }
+            }
+          },
+          [_vm._v("Start")]
+        )
+      : _vm._e(),
     _vm._v(" "),
     _c("button", { attrs: { id: "pause" }, on: { click: _vm.pauseTimer } }, [
       _vm._v("Pause")

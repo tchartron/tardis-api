@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Task;
 use App\Company;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -91,10 +92,26 @@ class TaskController extends Controller
         $userRunningTimers = $task->timers()
                         ->where([
                             ['user_id', $user->id],
-                            ['finished_at', '>', \DB::raw('created_at')]
+                            ['finished_at', '=', \DB::raw('created_at')]
                         ])->get(); //Use toSql to see query and DB::raw() is to compare two columns values
-        // dd($userRuningTimers);
-        return view('tasks.show', ['task' => $task, 'userRunningTimers' => $userRunningTimers]);
+        // dd($userRunningTimers);
+        // dd(Carbon::now());
+        $secondesTotal = 0;
+        foreach ($userRunningTimers as $runningTimer) {
+            // Calculate the difference using carbon to pass data to Timer vue component and initialize it
+            // dd($runningTimer->finished_at);
+            $start  = new Carbon($runningTimer->created_at);
+            // $end    = new Carbon($runningTimer->finished_at);
+            $end    = Carbon::now();
+            //Diff in hours
+            // $start->diff($end)->format('%H:%I:%S');
+            //Diff in hours more than 24h
+            // $start->diffInHours($end) . ':' . $start->diff($end)->format('%I:%S');
+            $secondesTotal = $start->diffInSeconds($end);
+            // dd($secondes);
+        }
+        // dd($secondesTotal);
+        return view('tasks.show', ['task' => $task, 'runningTimerSeconds' => $secondesTotal]);
     }
 
     /**
