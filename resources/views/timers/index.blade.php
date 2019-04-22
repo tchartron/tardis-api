@@ -18,6 +18,10 @@
                                     {{ $timer->user->name }}
                                 </div>
                                 <div>
+                                    <span class="font-weight-bold">{{ __('For task : ') }}</span>
+                                    <a href="{{ route('tasks.show', ['task' => $timer->task->id]) }}">{{ $timer->task->title }}</a>
+                                </div>
+                                <div>
                                     <span class="font-weight-bold">{{ __('For company : ') }}</span>
                                     {{ $timer->task->company->name }} {{-- Oh my fucking god !!!!!!!!!!!!! --}}
                                 </div>

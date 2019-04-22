@@ -42,15 +42,15 @@
                     </div>
                     <hr />
                     <div class="text-center">
-                        <h5 class="card-title">{{ __('Times spent on task') }} {{ $task->title }}</h5>
+                        <h5 class="card-title">{{ __('Time spent on task') }} {{ $task->title }}</h5>
                         <div class="card-text">
                             {{-- List of times --}}
                             @foreach ($task->timers as $timer)
-                                <div>
-                                    <div>- By user : {{ $timer->user_id }}</div>
+                                <div class="border border-primary rounded mb-2">
+                                    <div class="font-weight-bold">- By user : {{ $timer->user->name }}</div>
                                     <div>- Started at : {{ $timer->created_at }}</div>
                                     <div>- Finished at : {{ $timer->finished_at }}</div>
-                                    <div>- Time spent : {{ $timer->getTimeSpent() }}</div>
+                                    <div class="font-weight-bold">- Time spent : {{ $timer->getTimeSpent() }}</div>
                                 </div>
                             @endforeach
                         </div>

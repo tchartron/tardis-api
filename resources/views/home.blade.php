@@ -13,11 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    Welcome to timeinator {{ Auth::user()->name }}
-
-                    <a class="d-block" href="{{ route('companies.index') }}">{{ __('Companies') }}</a>
-
+                    <div class="border border-primary rounded">
+                        <span class="d-block">Welcome to timeinator <span class="font-weight-bold">{{ Auth::user()->name }}</span></span>
+                        <p>This is the web front end to manage times spent on tasks for companies</p>
+                    </div>
                     {{-- STATS GOES HERE  --}}
                 </div>
             </div>
