@@ -42,6 +42,7 @@
                                     <div>- By user : {{ $timer->user_id }}</div>
                                     <div>- Started at : {{ $timer->created_at }}</div>
                                     <div>- Finished at : {{ $timer->finished_at }}</div>
+                                    <div>- Time spent : {{ $timer->getTimeSpent() }}</div>
                                 </div>
                             @endforeach
                         </div>
