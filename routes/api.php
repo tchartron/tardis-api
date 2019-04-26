@@ -26,3 +26,5 @@ Route::group([
     Route::post('refresh', 'Api\AuthController@refresh');
     Route::post('me', 'Api\AuthController@me');
 });
+
+Route::apiResource('companies', 'Api\CompanyController')->middleware('auth:api');
