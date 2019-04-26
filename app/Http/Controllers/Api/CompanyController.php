@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Company;
+
 class CompanyController extends Controller
 {
     /**
@@ -14,7 +16,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::all();
+        return response()->json($companies);
     }
 
     /**
@@ -25,7 +28,13 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd('here');
+        $validatedRequest = request()->validate([
+            'name' => ['required', 'min:3'],
+            'description' => ['required', 'min:10']
+        ]);
+        dd($errors);
+        Company::create($validatedRequest);
     }
 
     /**
