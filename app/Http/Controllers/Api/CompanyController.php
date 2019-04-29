@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Company;
+use App\Http\Resources\CompanyResource;
 
 class CompanyController extends Controller
 {
@@ -33,8 +34,9 @@ class CompanyController extends Controller
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:10']
         ]);
-        dd($errors);
-        Company::create($validatedRequest);
+        // dd($errors);
+        // dd(Company::create($validatedRequest));
+        return response()->json(Company::create($validatedRequest));
     }
 
     /**
@@ -43,9 +45,10 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company)
     {
-        //
+        $companyResource = new CompanyResource($company);
+        return response()->json($companyResource);
     }
 
     /**
@@ -57,7 +60,12 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedRequest = request()->validate([
+            'name' => ['required', 'min:3'],
+            'description' => ['required', 'min:10']
+        ]);
+        $company->update($validatedRequest);
+        return response()->json($company);
     }
 
     /**
@@ -66,8 +74,8 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company)
     {
-        //
+        return response()->json($company->delete());
     }
 }
