@@ -39,11 +39,11 @@ class Company extends Model
     public function totalTimeSpent() //later add date picker in view for peroid range
     {
         $tasks = $this->tasks;
-        dd($tasks);
+        // dd($tasks);
         foreach ($tasks as $key => $value) {
-            dd($value->timers);
+            // dd($value->timers);
         }
-        dd($tasks);
+        // dd($tasks);
     }
 
 }
