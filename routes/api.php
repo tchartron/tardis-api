@@ -28,3 +28,4 @@ Route::group([
 });
 
 Route::apiResource('companies', 'Api\CompanyController')->middleware('auth:api');
+Route::apiResource('task', 'Api\TaskController')->middleware('auth:api');
