@@ -21,6 +21,11 @@ class Company extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function timers()
+    {
+        return $this->hasManyThrough(Timer::class, Task::class);
+    }
+
     public function addTask($task)
     {
         $task['user_id'] = \Auth::user()->id;
