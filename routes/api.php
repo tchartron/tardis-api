@@ -19,7 +19,6 @@ use Illuminate\Http\Request;
 
 Route::group([
     'middleware' => 'api'
-    // 'prefix' => 'auth'
 ], function ($router) {
     Route::post('login', 'Api\AuthController@login');
     Route::post('logout', 'Api\AuthController@logout');
@@ -27,5 +26,17 @@ Route::group([
     Route::post('me', 'Api\AuthController@me');
 });
 
-Route::apiResource('companies', 'Api\CompanyController')->middleware('auth:api');
-Route::apiResource('task', 'Api\TaskController')->middleware('auth:api');
+Route::middleware(['auth:api'])->group(function() {
+    Route::apiResource('companies', 'Api\CompanyController');
+    Route::apiResource('companies.tasks', 'Api\TaskController'); //Tasks depends on companies maybe later add endpoints to show a task without company id in url ...
+});
+
+
+//We wrap tasks in companies because company can't exist without a task
+// Route::group([
+//     'middleware' => 'auth:api',
+//     'prefix' => 'companies' // = /api/companies
+// ], function($router) {
+//     Route::get('/{company}/task');
+//     Route::get('/{company}/task');
+// });
