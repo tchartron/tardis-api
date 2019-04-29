@@ -58,11 +58,11 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Company $company)
     {
         $validatedRequest = request()->validate([
-            'name' => ['required', 'min:3'],
-            'description' => ['required', 'min:10']
+            'name' => ['min:3'],
+            'description' => ['min:10']
         ]);
         $company->update($validatedRequest);
         return response()->json($company);
