@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'FrontController@index')->name('front');
+// Route::get('/', 'FrontController@index')->name('front');
+Route::get('/', function() {
+    return "Nothing to see here";
+})->name('front');
 
 Auth::routes();
 
