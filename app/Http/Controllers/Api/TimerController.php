@@ -82,7 +82,7 @@ class TimerController extends Controller
                     $timer->update([
                         'finished_at' => Carbon::now()
                     ]);
-                    return response()->json(["sucess" => "Timer successfully updated"], 200);
+                    return response()->json(["success" => "Timer successfully updated"], 200);
                 } else {
                     return response()->json(["error" => "This timer does not belongs to this task"], 404);
                 }
