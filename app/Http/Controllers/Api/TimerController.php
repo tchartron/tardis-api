@@ -39,7 +39,8 @@ class TimerController extends Controller
             $timer->task_id = $task->id;
             $timer->finished_at = Carbon::now();
             $timer->save();
-            return response()->json(['success' => 'Timer added to task : '.$task->title.' (id:'.$task->id.')'], 200);
+            return response()->json(['success' => 'Timer added to task : '.$task->title.' (id:'.$task->id.')',
+                                    'timer' => $timer], 200);
         } else {
             return response()->json(['error' => 'This task does not belongs to this company'], 401);
         }
