@@ -118,4 +118,9 @@ class TimerController extends Controller
             return response()->json(["error" => "This timer id does not exists"], 404);
         }
     }
+
+    public function now()
+    {
+        return response()->json(["now" => Carbon::now()]);
+    }
 }
