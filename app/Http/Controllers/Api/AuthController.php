@@ -14,7 +14,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -86,16 +86,16 @@ class AuthController extends Controller
      * @param  Request $request [description]
      * @return [type]           [description]
      */
-    // public function register(Request $request)
-    // {
-    //   $user = User::create([
-    //     'name' => $request->name,
-    //     'email' => $request->email,
-    //     'password' => bcrypt($request->password),
-    //   ]);
+    public function register(Request $request)
+    {
+        $user = \App\User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+        ]);
 
-    //   $token = auth('api')->login($user);
+        $token = auth('api')->login($user);
 
-    //   return $this->respondWithToken($token);
-    // }
+        return $this->respondWithToken($token);
+    }
 }
