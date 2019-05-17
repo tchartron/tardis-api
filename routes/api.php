@@ -32,6 +32,7 @@ Route::middleware(['auth:api'])->group(function() {
     Route::apiResource('companies.tasks', 'Api\TaskController'); //Tasks depends on companies maybe later add endpoints to show a task without company id in url ...
     Route::apiResource('companies.tasks.timers', 'Api\TimerController');
     Route::get("now", 'Api\TimerController@now');
+    Route::get("users/{user}", 'Api\UserController@show');
 });
 
 
