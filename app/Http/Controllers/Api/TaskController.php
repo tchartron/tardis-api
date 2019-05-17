@@ -38,6 +38,7 @@ class TaskController extends Controller
         $task = new Task();
         $task->title = request('title');
         $task->description = request('description');
+        $task->owner_id = \Auth::user()->id;
         $company->tasks()->save($task);
     }
 

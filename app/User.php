@@ -47,6 +47,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Timer::class);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'owner_id');
+    }
+
     // public function tasks()
     // {
     //     return $this->hasMany(Task::class);
