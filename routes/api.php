@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 // });
 
 Route::group([
-    'middleware' => 'api'
+    'middleware' => ['api', 'cors']
 ], function ($router) {
     Route::post('login', 'Api\AuthController@login');
     Route::post('logout', 'Api\AuthController@logout');
