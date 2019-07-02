@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Task;
 use App\Company;
+use App\Http\Resources\TaskResource;
 
 class TaskController extends Controller
 {
@@ -56,9 +57,13 @@ class TaskController extends Controller
         //             ->where([
         //                 ['id', $task->id]
         //             ])->get();
-        $returnTask = $company->tasks()
-                    ->whereId($task->id)->get();
-        return response()->json($returnTask);
+
+        // $returnTask = $company->tasks()
+        //             ->whereId($task->id)->get();
+        // return response()->json($returnTask);
+
+        $taskResource = new TaskResource($task);
+        return response()->json($taskResource);
     }
 
     /**
