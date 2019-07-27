@@ -19,6 +19,9 @@ class TaskController extends Controller
     public function index(Company $company)
     {
         // $tasks = Task::all();
+
+        //go check in gitlab for new tasks to add
+
         $tasks = $company->tasks;
         return response()->json($tasks);
     }
