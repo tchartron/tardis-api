@@ -28,19 +28,19 @@ Route::group([
 });
 
 Route::middleware(['auth:api'])->group(function() {
-    Route::apiResource('companies', 'Api\CompanyController');
-    Route::apiResource('companies.tasks', 'Api\TaskController'); //Tasks depends on companies maybe later add endpoints to show a task without company id in url ...
-    Route::apiResource('companies.tasks.timers', 'Api\TimerController');
+    Route::apiResource('groups', 'Api\GroupController');
+    Route::apiResource('groups.tasks', 'Api\TaskController'); //Tasks depends on groups maybe later add endpoints to show a task without group id in url ...
+    Route::apiResource('groups.tasks.timers', 'Api\TimerController');
     Route::get("now", 'Api\TimerController@now');
     Route::get("users/{user}", 'Api\UserController@show');
 });
 
 
-//We wrap tasks in companies because company can't exist without a task
+//We wrap tasks in groups because group can't exist without a task
 // Route::group([
 //     'middleware' => 'auth:api',
-//     'prefix' => 'companies' // = /api/companies
+//     'prefix' => 'groups' // = /api/groups
 // ], function($router) {
-//     Route::get('/{company}/task');
-//     Route::get('/{company}/task');
+//     Route::get('/{groups}/task');
+//     Route::get('/{groups}/task');
 // });

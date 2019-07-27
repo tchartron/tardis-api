@@ -8,7 +8,7 @@
                 <div class="card-header">Timers</div>
 
                 <div class="card-body">
-                    <a href="{{ route('companies.index') }}" class="btn btn-primary" role="button">{{ __('Go to work') }}</a>
+                    <a href="{{ route('groups.index') }}" class="btn btn-primary" role="button">{{ __('Go to work') }}</a>
                     <hr />
                     @foreach ($timers as $timer)
                         <div class="row mt-2">
@@ -22,14 +22,14 @@
                                     <a href="{{ route('tasks.show', ['task' => $timer->task->id]) }}">{{ $timer->task->title }}</a>
                                 </div>
                                 <div>
-                                    <span class="font-weight-bold">{{ __('For company : ') }}</span>
-                                    {{ $timer->task->company->name }} {{-- Oh my fucking god !!!!!!!!!!!!! --}}
+                                    <span class="font-weight-bold">{{ __('For group : ') }}</span>
+                                    {{ $timer->task->group->name }} {{-- Thug life --}}
                                 </div>
                                 <div>
                                     <span class="font-weight-bold">{{ __('Time spent : ') }}</span>
                                     {{ $timer->getTimeSpent() }}
                                 </div>
-                                {{-- <a href="{{ route('companies.edit', ['id' => $timer->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}  {{ $timer->name }}</a> --}}
+                                {{-- <a href="{{ route('groups.edit', ['id' => $timer->id]) }}" class="btn btn-success" role="button">{{ __('Edit') }}  {{ $timer->name }}</a> --}}
                             </div>
                         </div>
                         <hr />

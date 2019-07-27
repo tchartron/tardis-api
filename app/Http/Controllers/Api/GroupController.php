@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Company;
-use App\Http\Resources\CompanyResource;
+use App\Group;
+use App\Http\Resources\GroupResource;
 
-class CompanyController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-        return response()->json($companies);
+        $groups = Group::all();
+        return response()->json($groups);
     }
 
     /**
@@ -35,8 +35,8 @@ class CompanyController extends Controller
             'description' => ['required', 'min:10']
         ]);
         // dd($errors);
-        // dd(Company::create($validatedRequest));
-        return response()->json(Company::create($validatedRequest));
+        // dd(Group::create($validatedRequest));
+        return response()->json(Group::create($validatedRequest));
     }
 
     /**
@@ -45,10 +45,10 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(Group $group)
     {
-        $companyResource = new CompanyResource($company);
-        return response()->json($companyResource);
+        $groupResource = new GroupResource($group);
+        return response()->json($groupResource);
     }
 
     /**
@@ -58,14 +58,14 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Group $group)
     {
         $validatedRequest = request()->validate([
             'name' => ['min:3'],
             'description' => ['min:10']
         ]);
-        $company->update($validatedRequest);
-        return response()->json($company);
+        $group->update($validatedRequest);
+        return response()->json($group);
     }
 
     /**
@@ -74,8 +74,8 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(Group $group)
     {
-        return response()->json($company->delete());
+        return response()->json($group->delete());
     }
 }

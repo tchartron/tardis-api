@@ -14,8 +14,8 @@
                         </div>
                     @endif
                     <div class="border border-primary rounded">
-                        <span class="d-block">Welcome to timeinator <span class="font-weight-bold">{{ Auth::user()->name }}</span></span>
-                        <p>This is the web front end to manage times spent on tasks for companies</p>
+                        <span class="d-block">Welcome to Tardis <span class="font-weight-bold">{{ Auth::user()->name }}</span></span>
+                        <p>Manage times spent on tasks for groups</p>
                     </div>
                     {{-- STATS GOES HERE  --}}
                 </div>

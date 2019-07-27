@@ -18,8 +18,8 @@
                                     <a class="" href="/tasks/{{ $task->id }}">{{ $task->title }}</a>
                                 </div>
                                 <div>
-                                    <span class="font-weight-bold">{{ __('Company : ') }}</span>
-                                    {{ $task->company->name }}
+                                    <span class="font-weight-bold">{{ __('Group : ') }}</span>
+                                    {{ $task->group->name }}
                                 </div>
                                 <div>
                                     <span class="font-weight-bold">{{ __('Status : ') }}</span>

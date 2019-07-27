@@ -39,7 +39,7 @@ class TimerController extends Controller
         //NOT WORKINGit says user_id does not have a default value ...
         // Time::create([
         //     'user_id' => \Auth::user()->id, //or auth()->user()->id
-        //     'company_id' => request('company_id'),
+        //     'group_id' => request('group_id'),
         //     'total_time' => request('total_time')
         // ]);
         $timer = new Timer();

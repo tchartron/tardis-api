@@ -15,9 +15,9 @@ class Timer extends Model
         return $this->belongsTo(User::class);
     }
 
-    // public function company()
+    // public function group()
     // {
-    //     return $this->belongsTo(Company::class);
+    //     return $this->belongsTo(Group::class);
     // }
 
     public function task()

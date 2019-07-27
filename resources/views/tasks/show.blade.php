@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="my-2">
                         <p class="lead">{{ $task->description }}</p>
-                        <p class="lead"><span class="font-weight-bold">{{ __('Company :') }}</span> {{ $task->company->name }}</p>
+                        <p class="lead"><span class="font-weight-bold">{{ __('Group :') }}</span> {{ $task->group->name }}</p>
                         {{-- <p class="lead"><span class="font-weight-bold">{{ __('User :') }}</span> {{ $task->user_id }}</p> --}}
                          @if (!$task->completed)
                             <p class="lead"><span class="font-weight-bold text-success">{{ __('Status : Open') }}</span></p>

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class Company extends Model
+class Group extends Model
 {
     protected $fillable = ['name', 'description'];
 
@@ -29,12 +29,12 @@ class Company extends Model
     public function addTask($task)
     {
         $task['user_id'] = \Auth::user()->id;
-        $task['company_id'] = $this->id;
+        $task['group_id'] = $this->id;
         $this->tasks()->create($task);
 
         //Does not work
         // return Task::create([
-        //     'company_id' => $this->id,
+        //     'group_id' => $this->id,
         //     'user_id' => \Auth::user()->id,
         //     'title' => $task['title'],
         //     'description' => $task['description'],

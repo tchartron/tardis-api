@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
-use App\Company;
+use App\Group;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -41,7 +41,7 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Company $company)
+    public function store(Group $group)
     {
         request()->validate([
             'title' => ['required', 'min:3'],
@@ -54,12 +54,12 @@ class TaskController extends Controller
         $task->title = request('title');
         $task->description = request('description');
         $task->owner_id = \Auth::user()->id;
-        $company->tasks()->save($task); // Saves the company_id type hinted as the relation
+        $group->tasks()->save($task); // Saves the group_id type hinted as the relation
 
         ////////////////////
         //Second approach //
         ////////////////////
-        // $company->addTask(request(['title', 'description']));
+        // $group->addTask(request(['title', 'description']));
 
         ///////////////////
         //Third approach //
@@ -69,11 +69,11 @@ class TaskController extends Controller
         // $task->description = request('description');
         // // $task->user_id = \Auth::user()->id;
         // $task->user()->associate(\Auth::user());
-        // // $task->company_id = $company->id;
-        // $task->company()->associate($company);
+        // // $task->group_id = $group->id;
+        // $task->group()->associate($group);
         // $task->save();
 
-        return redirect('/companies/'.$company->id);
+        return redirect('/groups/'.$group->id);
     }
 
     /**

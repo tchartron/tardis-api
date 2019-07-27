@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
+use App\Group;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class GroupController extends Controller
 {
     public function __construct()
     {
@@ -18,8 +18,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-        return view('companies.index', compact('companies'));
+        $groups = Group::all();
+        return view('groups.index', compact('groups'));
     }
 
     /**
@@ -29,7 +29,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('companies.create');
+        return view('groups.create');
     }
 
     /**
@@ -43,15 +43,15 @@ class CompanyController extends Controller
         ////////////////////
         // First approach //
         ////////////////////
-        // $company = new Company();
-        // $company->name = request('name');
-        // $company->description = request('description');
-        // $company->save();
+        // $group = new Group();
+        // $group->name = request('name');
+        // $group->description = request('description');
+        // $group->save();
 
         ////////////////////
         //Second approach //
         ////////////////////
-        // Company::create([
+        // group::create([
         //     'name' => request('name'),
         //     'description' => request('description')
         // ]);
@@ -59,8 +59,8 @@ class CompanyController extends Controller
         ///////////////////
         //Third approach //
         ///////////////////
-        // Company::create(request(['name', 'description']));
-        // return redirect('/companies');
+        // group::create(request(['name', 'description']));
+        // return redirect('/groups');
 
         ////////////////////
         //With validation //
@@ -69,67 +69,67 @@ class CompanyController extends Controller
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:10']
         ]);
-        Company::create($validatedRequest);
-        return redirect('/companies');
+        Group::create($validatedRequest);
+        return redirect('/groups');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(Group $group)
     {
-        //Done in view companies.show
-        // $tasks = $company->tasks;
+        //Done in view groups.show
+        // $tasks = $group->tasks;
         // dd($tasks);
-        return view('companies.show', compact('company'));
+        return view('groups.show', compact('group'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit(Group $group)
     {
-        return view('companies.edit', compact('company'));
+        return view('groups.edit', compact('group'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Company  $company
+     * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Group $group)
     {
         ///////////////////
         //First approach //
         ///////////////////
-        // $company->name = request('name');
-        // $company->description = request('description');
-        // $company->save();
+        // $group->name = request('name');
+        // $group->description = request('description');
+        // $group->save();
         $validatedRequest = request()->validate([
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:10']
         ]);
-        $company->update($validatedRequest);
-        return redirect('/companies');
+        $group->update($validatedRequest);
+        return redirect('/groups');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(Group $group)
     {
-        $company->delete();
-        return redirect("/companies");
+        $group->delete();
+        return redirect("/groups");
     }
 }

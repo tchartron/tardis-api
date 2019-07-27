@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Timer;
 use App\Task;
-use App\Company;
+use App\Group;
 use Carbon\Carbon;
 
 class TimerController extends Controller
@@ -29,11 +29,11 @@ class TimerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Company $company, Task $task)
+    public function store(Request $request, Group $group, Task $task)
     {
         $user = \Auth::user();
-        // dd($company->tasks->contains($task));
-        if($company->tasks->contains($task)) {
+        // dd($group->tasks->contains($task));
+        if($group->tasks->contains($task)) {
             $timer = new Timer();
             $timer->user_id = $user->id; //or auth()->user()->id
             $timer->task_id = $task->id;
@@ -42,11 +42,11 @@ class TimerController extends Controller
             return response()->json(['success' => 'Timer added to task : '.$task->title.' (id:'.$task->id.')',
                                     'timer' => $timer], 200);
         } else {
-            return response()->json(['error' => 'This task does not belongs to this company'], 401);
+            return response()->json(['error' => 'This task does not belongs to this group'], 401);
         }
         // $user->timers()->save($timer);
         // $task->timers()->save($timer);
-        // $company->tasks()->timers()->save($timer);
+        // $group->tasks()->timers()->save($timer);
     }
 
     /**
@@ -55,9 +55,9 @@ class TimerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company, Task $task, Timer $timer)
+    public function show(Group $group, Task $task, Timer $timer)
     {
-        $returnTimer = $company->timers()
+        $returnTimer = $group->timers()
                             ->where([
                                 ['task_id', '=', $task->id],
                                 ['timers.id', '=', $timer->id],
@@ -72,13 +72,13 @@ class TimerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company, Task $task, Timer $timer)
+    public function update(Request $request, Group $group, Task $task, Timer $timer)
     {
         // dd(Timer::where('id', $timer->id)->exists()); //Check if timer exists
-        // dd($company->tasks->contains($task)); //Check if task belongs to this company
+        // dd($group->tasks->contains($task)); //Check if task belongs to this group
         // dd($task->timers->contains($timer)); //Check if timer belongs to this task timers
         if(Timer::where('id', $timer->id)->exists()) {
-            if($company->tasks->contains($task)) {
+            if($group->tasks->contains($task)) {
                 if($task->timers->contains($timer)) {
                     $timer->update([
                         'finished_at' => Carbon::now()
@@ -88,7 +88,7 @@ class TimerController extends Controller
                     return response()->json(["error" => "This timer does not belongs to this task"], 404);
                 }
             } else {
-                return response()->json(["error" => "This task does not belongs to this company"], 404);
+                return response()->json(["error" => "This task does not belongs to this group"], 404);
             }
         } else {
             return response()->json(["error" => "This timer id does not exists"], 404);
@@ -101,10 +101,10 @@ class TimerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company, Task $task, Timer $timer)
+    public function destroy(Group $group, Task $task, Timer $timer)
     {
         if(Timer::where('id', $timer->id)->exists()) {
-            if($company->tasks->contains($task)) {
+            if($group->tasks->contains($task)) {
                 if($task->timers->contains($timer)) {
                     $timer->delete();
                     return response()->json(["sucess" => "Timer successfully deleted"], 200);
@@ -112,7 +112,7 @@ class TimerController extends Controller
                     return response()->json(["error" => "This timer does not belongs to this task"], 404);
                 }
             } else {
-                return response()->json(["error" => "This task does not belongs to this company"], 404);
+                return response()->json(["error" => "This task does not belongs to this group"], 404);
             }
         } else {
             return response()->json(["error" => "This timer id does not exists"], 404);

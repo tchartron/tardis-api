@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Task;
-use App\Company;
+use App\Group;
 use App\Http\Resources\TaskResource;
 
 class TaskController extends Controller
@@ -16,13 +16,13 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Company $company)
+    public function index(Group $group)
     {
         // $tasks = Task::all();
 
         //go check in gitlab for new tasks to add
 
-        $tasks = $company->tasks;
+        $tasks = $group->tasks;
         return response()->json($tasks);
     }
 
@@ -32,7 +32,7 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Company $company)
+    public function store(Request $request, Group $group)
     {
         request()->validate([
             'title' => ['required', 'min:3'],
@@ -43,7 +43,7 @@ class TaskController extends Controller
         $task->title = request('title');
         $task->description = request('description');
         $task->owner_id = \Auth::user()->id;
-        $company->tasks()->save($task);
+        $group->tasks()->save($task);
 
         return response()->json($task);
     }
@@ -54,14 +54,14 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company, Task $task)
+    public function show(Group $group, Task $task)
     {
-        // $returnTask = $company->tasks()
+        // $returnTask = $group->tasks()
         //             ->where([
         //                 ['id', $task->id]
         //             ])->get();
 
-        // $returnTask = $company->tasks()
+        // $returnTask = $group->tasks()
         //             ->whereId($task->id)->get();
         // return response()->json($returnTask);
 
@@ -76,7 +76,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company, Task $task)
+    public function update(Request $request, Group $group, Task $task)
     {
         $validatedRequest = request()->validate([
             'title' => ['min:3'],
@@ -97,7 +97,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company, Task $task)
+    public function destroy(Group $group, Task $task)
     {
         return response()->json($task->delete());
     }

@@ -18,9 +18,9 @@ class Task extends Model
         return $this->hasMany(Timer::class);
     }
 
-    public function company()
+    public function group()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Group::class);
     }
 
     public function user()
