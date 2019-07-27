@@ -9,13 +9,10 @@ class Gitlab {
     protected $container;
 
     public function __construct(Container $container) {
-        // $client = new \GuzzleHttp\Client;
-        // dd($client);
-        // $this->container = $container;
         $this->setContainer($container);
         $this->container->add('guzzle', \GuzzleHttp\Client::class)->addArgument([
             'base_uri' => env('GITLAB_URI'),
-            // 'headers' => ['private-token' => env('GITLAB_TOKEN')],
+            'headers' => ['private-token' => env('GITLAB_TOKEN')],
             'debug' => env('GITLAB_DEBUG')
         ]);
     }
@@ -26,21 +23,12 @@ class Gitlab {
 
     public function getGroups() {
         $responseBody = "";
-        // dd($this->container->get('guzzle'));
-        $queryParams = ["private_token" => env('GITLAB_TOKEN')];
+        // $queryParams = ["private_token" => env('GITLAB_TOKEN')];
         $res = $this->container->get('guzzle')->request('GET', 'groups', [
-            'query' => $queryParams
+            // 'query' => $queryParams
         ]);
-        // dd($res);
-        // $client = new \GuzzleHttp\Client([
-        //     'base_uri' => env('GITLAB_URI'),
-        //     // 'headers' => ['private-token' => env('GITLAB_TOKEN')],
-        //     'debug' => env('GITLAB_DEBUG')
-        // ]);
-        // $res = $client->request('GET', env('GITLAB_URI')."/groups", ["query" => $queryParams]);
-        // dd($res);
         $responseBody = json_decode($res->getBody());
-        dd($responseBody);
+        // dd($responseBody);
         // foreach ($json as $json_group) {
         //     if (!preg_match('|/|', $json_group->full_path)) {
         //     }
