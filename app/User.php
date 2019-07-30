@@ -38,6 +38,20 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    // protected $appends = [
+    //     'full_name'
+    // ];
+
+    /**
+     * Return the current'user full name
+     *
+     * @return (string) full name
+     * @author Thomas C
+     **/
+    // public function getFullNameAttribute()
+    // {
+    //     return explode('@', $this->email)[0];
+    // }
 
     //////////////
     //Relations //

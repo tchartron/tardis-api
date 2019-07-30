@@ -10,16 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Services\Gitlab;
-use League\Container\Container;
-// Route::get('/', 'FrontController@index')->name('front');
-Route::get('/', function() {
-    $container = new Container;
-    $gitlab = new Gitlab($container);
-    $groups = $gitlab->getGroups();
-    dd($groups);
-    // return "Nothing to see here";
-})->name('front');
+// use App\Services\Gitlab;
+// use League\Container\Container;
+Route::get('/', 'FrontController@index')->name('front');
+// Route::get('/', function() {
+//     // $container = new Container;
+//     // $gitlab = new Gitlab($container);
+//     // $groups = $gitlab->getGroups();
+//     // dd($groups);
+//     return "Tardis";
+// })->name('front');
 
 Auth::routes();
 

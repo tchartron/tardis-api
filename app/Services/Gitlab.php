@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use League\Container\Container;
+use App\Group;
 
 class Gitlab {
 
@@ -28,11 +29,25 @@ class Gitlab {
             // 'query' => $queryParams
         ]);
         $responseBody = json_decode($res->getBody());
-        // dd($responseBody);
-        // foreach ($json as $json_group) {
-        //     if (!preg_match('|/|', $json_group->full_path)) {
-        //     }
-        // }
+        return $responseBody;
+    }
+
+    public function saveGroups($groups) {
+        if(is_array($groups) && !empty($groups)) {
+            foreach ($groups as $group) {
+                dd($group);
+                $newGroup = new Group();
+                // $newGroup->name = $group->name;
+                // $newGroup->description = $group->description;
+                $newGroup->save();
+            }
+        }
+    }
+
+    public function getIssuesFromGroup($groupId) {
+        $responseBody = "";
+        $res = $this->container->get('guzzle')->request('GET', "groups/$groupId/issues", []);
+        $responseBody = json_decode($res->getBody());
         return $responseBody;
     }
 }

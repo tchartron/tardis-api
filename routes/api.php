@@ -33,6 +33,9 @@ Route::middleware(['auth:api'])->group(function() {
     Route::apiResource('groups.tasks.timers', 'Api\TimerController');
     Route::get("now", 'Api\TimerController@now');
     Route::get("users/{user}", 'Api\UserController@show');
+    //GitlabService
+    Route::get('gitlab/groups', 'Api\GitlabController@getGroups');
+    Route::get('gitlab/groups/{groupId}/issues', 'Api\GitlabController@getIssuesFromGroup');
 });
 
 
