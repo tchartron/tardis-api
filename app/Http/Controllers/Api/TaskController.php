@@ -18,10 +18,6 @@ class TaskController extends Controller
      */
     public function index(Group $group)
     {
-        // $tasks = Task::all();
-
-        //go check in gitlab for new tasks to add
-
         $tasks = $group->tasks;
         return response()->json($tasks);
     }

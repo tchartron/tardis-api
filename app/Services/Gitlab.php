@@ -35,7 +35,7 @@ class Gitlab {
     public function findOrCreateGroups($groups) {
         if(is_array($groups) && !empty($groups)) {
             foreach ($groups as $group) {
-                if(!Group::where('name', '=', $group->full_path)->exists()) {
+                if(!Group::where('name', '=', $group->full_name)->exists()) {
                     // $newGroup = new Group();
                     // $newGroup->name = $group->name;
                     // $newGroup->description = $group->description;
