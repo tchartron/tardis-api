@@ -32,14 +32,16 @@ class Gitlab {
         return $responseBody;
     }
 
-    public function saveGroups($groups) {
+    public function findOrCreateGroups($groups) {
         if(is_array($groups) && !empty($groups)) {
             foreach ($groups as $group) {
-                dd($group);
-                $newGroup = new Group();
-                // $newGroup->name = $group->name;
-                // $newGroup->description = $group->description;
-                $newGroup->save();
+                if(!Group::where('name', '=', $group->full_path)->exists()) {
+                    // $newGroup = new Group();
+                    // $newGroup->name = $group->name;
+                    // $newGroup->description = $group->description;
+                    // $newGroup->save();
+                    Group::create(['name' => $group->full_name, 'description' => $group->description]);
+                }
             }
         }
     }

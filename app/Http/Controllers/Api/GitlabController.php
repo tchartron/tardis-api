@@ -22,6 +22,7 @@ class GitlabController extends Controller
     public function getGroups()
     {
         $groups = $this->gitlabService->getGroups();
+        $this->gitlabService->findOrCreateGroups($groups);
         return response()->json($groups);
     }
 
