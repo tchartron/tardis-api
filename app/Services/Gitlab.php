@@ -36,10 +36,6 @@ class Gitlab {
         if(is_array($groups) && !empty($groups)) {
             foreach ($groups as $group) {
                 if(!Group::where('name', '=', $group->full_name)->exists()) {
-                    // $newGroup = new Group();
-                    // $newGroup->name = $group->name;
-                    // $newGroup->description = $group->description;
-                    // $newGroup->save();
                     Group::create(['name' => $group->full_name, 'description' => $group->description]);
                 }
             }
@@ -48,7 +44,10 @@ class Gitlab {
 
     public function getIssuesFromGroup($groupId) {
         $responseBody = "";
-        $res = $this->container->get('guzzle')->request('GET', "groups/$groupId/issues", []);
+        $params = ['state' => "opened"];
+        $res = $this->container->get('guzzle')->request('GET', "groups/$groupId/issues", [
+            "query" => $params
+        ]);
         $responseBody = json_decode($res->getBody());
         return $responseBody;
     }
