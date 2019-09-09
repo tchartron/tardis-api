@@ -57,7 +57,7 @@ class Gitlab {
         if(is_array($issues) && !empty($issues)) {
             foreach ($issues as $issue) {
                 if(!Task::where('name', '=', $issue->title)->exists()) {
-                    Task::create(['name' => $group->full_name, 'description' => $group->description, 'gitlab_id' => $group->id]);
+                    Task::create(['title' => $issue->full_name, 'description' => $issue->description, 'gitlab_id' => $issue->id]);
                 }
             }
         }
