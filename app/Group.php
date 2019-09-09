@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Group extends Model
 {
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'gitlab_id'];
 
     // protected $guarded = [];
 
