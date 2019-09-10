@@ -2,65 +2,103 @@
 
 namespace App\Services;
 
-use League\Container\Container;
+// use League\Container\Container;
 use App\Group;
+use App\Task;
+use GuzzleHttp\Client;
 
 class Gitlab {
 
-    protected $container;
+    // protected $container;
+    protected $client;
 
-    public function __construct(Container $container) {
-        $this->setContainer($container);
-        $this->container->add('guzzle', \GuzzleHttp\Client::class)->addArgument([
+    public function __construct() {
+        // $this->setContainer($container);
+        // $this->container->add('guzzle', \GuzzleHttp\Client::class)->addArgument([
+        //     'base_uri' => env('GITLAB_URI'),
+        //     'headers' => ['private-token' => env('GITLAB_TOKEN')],
+        //     'debug' => env('GITLAB_DEBUG')
+        // ]);
+        $this->client = new Client([
             'base_uri' => env('GITLAB_URI'),
             'headers' => ['private-token' => env('GITLAB_TOKEN')],
             'debug' => env('GITLAB_DEBUG')
         ]);
     }
 
-    private function setContainer($container) {
-        $this->container = $container;
-    }
+    // private function setContainer($container) {
+    //     $this->container = $container;
+    // }
 
     public function getGroups() {
-        $responseBody = "";
         // $queryParams = ["private_token" => env('GITLAB_TOKEN')];
-        $res = $this->container->get('guzzle')->request('GET', 'groups', [
-            // 'query' => $queryParams
-        ]);
-        $responseBody = json_decode($res->getBody());
-        return $responseBody;
-    }
-
-    public function findOrCreateGroups($groups) {
+        // $res = $this->container->get('guzzle')->request('GET', 'groups', [
+        //     // 'query' => $queryParams
+        // ]);
+        $res = $this->client->request('GET', 'groups', []);
+        $groups = json_decode($res->getBody());
         if(is_array($groups) && !empty($groups)) {
             foreach ($groups as $group) {
-                if(!Group::where('name', '=', $group->full_name)->exists()) {
-                    Group::create(['name' => $group->full_name, 'description' => $group->description, 'gitlab_id' => $group->id]);
-                }
+                $createdGroup = Group::firstOrCreate(
+                    ['name' => $group->full_name],
+                    ['description' => $group->description]
+                );
+                $this->getIssuesFromGroup($group->id, $createdGroup->id);
             }
         }
+        return $groups;
     }
 
-    public function getIssuesFromGroup($groupId) {
-        $responseBody = "";
+    // public function findOrCreateGroups($groups) {
+    //     if(is_array($groups) && !empty($groups)) {
+    //         foreach ($groups as $group) {
+    //             // if(!Group::where('name', '=', $group->full_name)->exists()) {
+    //             //     Group::create(['name' => $group->full_name, 'description' => $group->description, 'gitlab_id' => $group->id]);
+    //             // }
+    //             //firestOrCreate
+    //         }
+    //     }
+    // }
+
+    public function getIssuesFromGroup($gitlabGroupId, $createdGroupId) {
         $params = ['state' => "opened"];
-        //get tardis group id from $grouId which is gitlab group id
-        $res = $this->container->get('guzzle')->request('GET', "groups/$groupId/issues", [
+        // $group = Group::where('id', '=', $groupId)->first();
+        // $res = $this->container->get('guzzle')->request('GET', "groups/$group->gitlab_id/issues", [
+        //     "query" => $params
+        // ]);
+        $res = $this->client->request('GET', "groups/$gitlabGroupId/issues", [
             "query" => $params
         ]);
-        $responseBody = json_decode($res->getBody());
-        return $responseBody;
-    }
-
-    public function findOrCreateIssues($issues) {
+        $issues = json_decode($res->getBody());
+        // dd($issues);
         if(is_array($issues) && !empty($issues)) {
             foreach ($issues as $issue) {
-                if(!Task::where('name', '=', $issue->title)->exists()) {
-                    Task::create(['title' => $issue->full_name, 'description' => $issue->description, 'gitlab_id' => $issue->id]);
-                }
+                Task::unguard();
+                Task::firstOrCreate(
+                    ['title' => $issue->title, 'group_id' => $createdGroupId],
+                    ['description' => $issue->description, 'completed' => ($issue->state === "opened") ? 0 : 1, 'owner_id' => 0]
+                );
+                Task::reguard();
             }
         }
+        return $issues;
     }
+
+    // public function findOrCreateIssues($issues) {
+    //     if(is_array($issues) && !empty($issues)) {
+    //         foreach ($issues as $issue) {
+    //             if(!Task::where('title', '=', $issue->title)->exists()) {
+    //                 // Task::create(['title' => $issue->title, 'description' => $issue->description, 'gitlab_id' => $issue->id]); //no mass assignment for owner id don"t want to add it.
+    //                 $task = new Task();
+    //                 $task->owner_id = 0; // Owner 0 is gitlab
+    //                 $task->group_id = $issue->milestone->group_id ?? 0;
+    //                 $task->title = $issue->title;
+    //                 $task->description = $issue->description;
+    //                 $task->gitlab_id = $issue->id;
+    //                 $task->save();
+    //             }
+    //         }
+    //     }
+    // }
 
 }

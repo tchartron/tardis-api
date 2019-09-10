@@ -17,7 +17,6 @@ class CreateGroupsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
-            $table->unsignedInteger('gitlab_id')->default(0);
             $table->timestamps();
         });
     }

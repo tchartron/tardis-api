@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Group;
 use App\Http\Resources\GroupResource;
+use App\Services\Gitlab;
 
 class GroupController extends Controller
 {
@@ -15,8 +16,11 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Gitlab $gitlab)
     {
+        //Fetch groups from gitlab first later use cache to do this only once a day
+        $gitlab->getGroups();
+        //Get groups
         $groups = Group::all();
         return response()->json($groups);
     }

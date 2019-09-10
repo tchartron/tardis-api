@@ -29,6 +29,7 @@ class GitlabController extends Controller
     public function getIssuesFromGroup($groupId)
     {
         $issues = $this->gitlabService->getIssuesFromGroup($groupId);
+        $this->gitlabService->findOrCreateIssues($issues);
         return response()->json($issues);
     }
 }

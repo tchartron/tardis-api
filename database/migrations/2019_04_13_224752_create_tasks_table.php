@@ -20,7 +20,6 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->boolean('completed')->default(false);
-            $table->unsignedInteger('gitlab_id')->default(0);
             $table->timestamps();
         });
     }
