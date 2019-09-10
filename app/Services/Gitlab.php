@@ -73,12 +73,12 @@ class Gitlab {
         // dd($issues);
         if(is_array($issues) && !empty($issues)) {
             foreach ($issues as $issue) {
-                Task::unguard();
+                Task::unguard(); //Disable mass assignment guards
                 Task::firstOrCreate(
                     ['title' => $issue->title, 'group_id' => $createdGroupId],
                     ['description' => $issue->description, 'completed' => ($issue->state === "opened") ? 0 : 1]
                 );
-                Task::reguard();
+                Task::reguard(); //Re-enable mass assignment guards
             }
         }
         return $issues;
