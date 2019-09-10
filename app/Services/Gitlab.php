@@ -76,7 +76,7 @@ class Gitlab {
                 Task::unguard();
                 Task::firstOrCreate(
                     ['title' => $issue->title, 'group_id' => $createdGroupId],
-                    ['description' => $issue->description, 'completed' => ($issue->state === "opened") ? 0 : 1, 'owner_id' => 0]
+                    ['description' => $issue->description, 'completed' => ($issue->state === "opened") ? 0 : 1]
                 );
                 Task::reguard();
             }
