@@ -19,6 +19,7 @@ class GroupController extends Controller
     public function index(Gitlab $gitlab)
     {
         //Fetch groups from gitlab first later use cache to do this only once a day
+        //Maybe feature flag this
         $gitlab->getGroups();
         //Get groups
         $groups = Group::all();
@@ -33,13 +34,10 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        // dd('here');
         $validatedRequest = request()->validate([
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:10']
         ]);
-        // dd($errors);
-        // dd(Group::create($validatedRequest));
         return response()->json(Group::create($validatedRequest));
     }
 

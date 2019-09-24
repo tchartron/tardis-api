@@ -5,6 +5,7 @@ namespace App\Services;
 // use League\Container\Container;
 use App\Group;
 use App\Task;
+use App\GitlabTasks;
 use GuzzleHttp\Client;
 
 class Gitlab {
@@ -74,11 +75,15 @@ class Gitlab {
         if(is_array($issues) && !empty($issues)) {
             foreach ($issues as $issue) {
                 Task::unguard(); //Disable mass assignment guards
-                Task::firstOrCreate(
+                $createdTask = Task::firstOrCreate(
                     ['title' => $issue->title, 'group_id' => $createdGroupId],
                     ['description' => $issue->description, 'completed' => ($issue->state === "opened") ? 0 : 1]
                 );
                 Task::reguard(); //Re-enable mass assignment guards
+                //Populates gitlab tasks table
+                GitlabTasks::firstOrCreate(
+                    ['tardis_id' => $createdTask->id, 'gitlab_id' => $issue->iid]
+                );
             }
         }
         return $issues;
