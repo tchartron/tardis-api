@@ -82,7 +82,7 @@ class Gitlab {
                 Task::reguard(); //Re-enable mass assignment guards
                 //Populates gitlab tasks table
                 GitlabTasks::firstOrCreate(
-                    ['tardis_id' => $createdTask->id, 'gitlab_id' => $issue->iid]
+                    ['tardis_id' => $createdTask->id, 'gitlab_id' => $issue->id, 'gitlab_iid' => $issue->iid]
                 );
             }
         }

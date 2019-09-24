@@ -17,6 +17,7 @@ class CreateGitlabTasksTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('tardis_id');
             $table->unsignedInteger('gitlab_id');
+            $table->unsignedInteger('gitlab_iid');
             $table->timestamps();
         });
     }
