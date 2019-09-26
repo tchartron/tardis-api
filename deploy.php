@@ -6,7 +6,7 @@ $server = 'ploutos.webexpertbusiness.net';
 $path   = '/home/web/tardis';
 
 require 'recipe/laravel.php';
-require 'vendor/deployer/recipes/recipe/slack.php';
+require 'recipe/slack.php';
 
 // Project name
 set('application', $name);

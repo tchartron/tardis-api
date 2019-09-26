@@ -35,6 +35,9 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "deployer": {
+            "include_path": "recipe/"
         }
     },
     "autoload": {
