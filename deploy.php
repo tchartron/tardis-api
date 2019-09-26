@@ -71,7 +71,7 @@ task('fix:dotenv', function () {
         run('sed -i "s/APP_ENV=.*/APP_ENV=' . get('stage', 'stage') . '/gm" {{deploy_path}}/shared/.env');
         run('sed -i "s/APP_DEBUG=.*/APP_DEBUG=false/gm" {{deploy_path}}/shared/.env');
         run('sed -i "s/DB_HOST=.*/DB_HOST=localhost/gm" {{deploy_path}}/shared/.env');
-        run('php {{deploy_path}}/current/artisan key:generate');
+        // run('php {{deploy_path}}/current/artisan key:generate');
         write(' -> review .env shortly! ');
     }
 });
