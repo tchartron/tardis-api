@@ -5,6 +5,8 @@ $name   = 'Tardis website';
 $server = 'ploutos.webexpertbusiness.net';
 $path   = '/home/web/tardis';
 
+require dirname (__FILE__) . '/vendor/autoload.php';
+
 require 'recipe/laravel.php';
 require 'recipe/slack.php';
 
