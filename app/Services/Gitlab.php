@@ -21,9 +21,9 @@ class Gitlab {
         //     'debug' => env('GITLAB_DEBUG')
         // ]);
         $this->client = new Client([
-            'base_uri' => env('GITLAB_URI'),
-            'headers' => ['private-token' => env('GITLAB_TOKEN')],
-            'debug' => env('GITLAB_DEBUG')
+            'base_uri' => config('gitlab.uri'),
+            'headers' => ['private-token' => config('gitlab.token')],
+            'debug' => config('gitlab.debug')
         ]);
     }
 
