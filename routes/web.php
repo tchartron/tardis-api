@@ -45,3 +45,7 @@ Route::post('/timers', 'TimerController@store')->name('timers.store');
 Route::get('/timers', 'TimerController@index')->name('timers.index');
 Route::match(['put', 'patch'], '/timers/{timer}', 'TimerController@update')->name('timers.update');
 Route::delete('/timers/{timer}', 'TimerController@destroy')->name('timers.destroy');
+
+//Gitlab authentication
+Route::get('login/gitlab', 'Auth\GitlabAuthController@redirectToProvider');
+Route::get('login/gitlab/callback', 'Auth\GitlabAuthController@handleProviderCallback');

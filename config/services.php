@@ -44,4 +44,10 @@ return [
         ],
     ],
 
+    'gitlabweb' => [
+        'client_id' => env('GITLAB_CLIENT_ID'),
+        'client_secret' => env('GITLAB_CLIENT_SECRET'),
+        'redirect' => env('GITLAB_CLIENT_REDIRECT'),
+    ],
+
 ];
