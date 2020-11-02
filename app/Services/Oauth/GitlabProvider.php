@@ -13,7 +13,7 @@ class GitlabProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://git.webexpertbusiness.net/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase('https://git.gitlab.net/oauth/authorize', $state);
     }
 
     /**
@@ -21,7 +21,7 @@ class GitlabProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenUrl()
     {
-        return 'https://git.webexpertbusiness.net/oauth/token';
+        return 'https://git.gitlab.net/oauth/token';
     }
 
     /**
@@ -29,7 +29,7 @@ class GitlabProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $userUrl = 'https://git.webexpertbusiness.net/api/v4/user?access_token='.$token;
+        $userUrl = 'https://git.gitlab.net/api/v4/user?access_token='.$token;
 
         $response = $this->getHttpClient()->get($userUrl);
 

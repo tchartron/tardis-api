@@ -2,7 +2,7 @@
 namespace Deployer;
 
 $name   = 'Tardis website';
-$server = 'ploutos.webexpertbusiness.net';
+$server = 'ploutos.example.net';
 $path   = '/home/web/tardis';
 
 require dirname (__FILE__) . '/vendor/autoload.php';
@@ -14,7 +14,6 @@ require 'recipe/slack.php';
 set('application', $name);
 
 // Project repository
-// set('repository', 'git@git.webexpertbusiness.net:web-expert-business/website.git');
 set('repository', `git config --get remote.origin.url`);
 
 // [Optional] Allocate tty for git clone. Default value is false.
